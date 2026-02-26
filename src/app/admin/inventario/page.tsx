@@ -269,7 +269,7 @@ export default function InventarioPage() {
                                     <tr><td colSpan={6}>Cargando inventario...</td></tr>
                                 ) : products.length === 0 ? (
                                     <tr><td colSpan={6}>No hay productos registrados.</td></tr>
-                                ) : products.map(product => (
+                                ) : products.map((product: any) => (
                                     <tr key={product.id}>
                                         <td className="flex items-center gap-4">
                                             {product.main_image ? (
@@ -422,7 +422,7 @@ export default function InventarioPage() {
                                                     title="Seleccionar categoría de producto"
                                                     required
                                                 >
-                                                    {ALL_CATEGORIES.sort().map(cat => (
+                                                    {ALL_CATEGORIES.sort().map((cat: any) => (
                                                         <option key={cat} value={cat}>{cat}</option>
                                                     ))}
                                                 </select>
@@ -439,7 +439,7 @@ export default function InventarioPage() {
                                                 />
                                             </div>
 
-                                            {seoAnalysis.results.map(check => (
+                                            {seoAnalysis.results.map((check: any) => (
                                                 <div key={check.id} className={styles.checkItem}>
                                                     <span className={styles.checkStatus}>{check.pass ? '✅' : '❌'}</span>
                                                     <div className={styles.checkInfo}>

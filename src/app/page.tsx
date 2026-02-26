@@ -66,10 +66,10 @@ export default function Home() {
     button_2_link: '/kits'
   };
 
-  const soluciones = homeSections.filter(s => s.category === 'soluciones');
-  const categories = homeSections.filter(s => s.category === 'categories');
-  const stats = homeSections.filter(s => s.category === 'stats');
-  const extras = homeSections.filter(s => s.category === 'extras');
+  const soluciones = homeSections.filter((s: any) => s.category === 'soluciones');
+  const categories = homeSections.filter((s: any) => s.category === 'categories');
+  const stats = homeSections.filter((s: any) => s.category === 'stats');
+  const extras = homeSections.filter((s: any) => s.category === 'extras');
 
   return (
     <div className="home-wrapper">
@@ -327,7 +327,7 @@ export default function Home() {
               <p className="text-lg text-slate-600">{settings.services_subtitle || 'Ofrecemos soluciones integrales para que solo te preocupes por aprender.'}</p>
               <div className="grid gap-6">
                 {extras.length > 0 ? (
-                  extras.map(section => (
+                  extras.map((section: any) => (
                     <div key={section.id} className="flex gap-4 items-start p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow">
                       <div className="bg-primary/10 p-3 rounded-xl text-primary">
                         <span className="material-symbols-outlined text-3xl">{section.icon || 'star'}</span>
@@ -457,7 +457,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-y-2 border-slate-100 py-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.length > 0 ? (
-              stats.map(item => (
+              stats.map((item: any) => (
                 <div key={item.id}>
                   <p className="text-5xl font-black text-primary mb-2">{item.title}</p>
                   <p className="text-sm font-bold uppercase tracking-widest text-slate-500">{item.description}</p>

@@ -142,7 +142,7 @@ export default function AdminDashboard() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {recentOrders.map(order => (
+                                        {recentOrders.map((order: any) => (
                                             <tr key={order.id}>
                                                 <td><strong className="text-slate-400">#{order.id.slice(0, 5)}</strong></td>
                                                 <td>

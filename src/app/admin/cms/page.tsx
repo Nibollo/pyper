@@ -213,7 +213,7 @@ export default function AdminCMSPage() {
                 <section className={styles.section}>
                     <h3 className="font-black text-slate-800 uppercase tracking-widest text-sm mb-6 pb-2 border-b">Páginas Estáticas</h3>
                     <div className={styles.grid}>
-                        {pages.map(page => (
+                        {pages.map((page: any) => (
                             <div key={page.id} className={styles.pageCard}>
                                 <div className={styles.pageInfo}>
                                     <h4 className="font-bold text-slate-900">{page.title}</h4>
@@ -231,7 +231,7 @@ export default function AdminCMSPage() {
                 <section className={styles.section}>
                     <h3 className="font-black text-slate-800 uppercase tracking-widest text-sm mb-6 pb-2 border-b">Enlaces del Pie de Página</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {footerColumns.map(column => (
+                        {footerColumns.map((column: any) => (
                             <div key={column.id} className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                                 <h4 className="font-bold mb-4 text-slate-700 uppercase tracking-wider text-[10px]">{column.title}</h4>
                                 <div className="space-y-3">

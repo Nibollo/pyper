@@ -26,7 +26,7 @@ export default function CarritoPage() {
     const acceptedPayments = settings.accepted_payment_methods?.split(',') || ['cash_on_delivery'];
 
     const handleWhatsAppOnly = () => {
-        const message = cart.map(item =>
+        const message = cart.map((item: any) =>
             `*${item.name}* (x${item.quantity}) - ${(item.price * item.quantity).toLocaleString('es-PY')} Gs.`
         ).join('%0A');
 
@@ -47,7 +47,7 @@ export default function CarritoPage() {
                     customer_name: formData.name,
                     customer_phone: formData.phone,
                     message: `Dirección: ${formData.address}, Ciudad: ${formData.city}`,
-                    items: cart.map(it => ({ id: it.id, name: it.name, quantity: it.quantity, price: it.price })),
+                    items: cart.map((it: any) => ({ id: it.id, name: it.name, quantity: it.quantity, price: it.price })),
                     total_amount: cartTotal,
                     request_type: 'Venta Directa Ecommerce',
                     status: 'Pendiente'
@@ -133,9 +133,9 @@ export default function CarritoPage() {
                                             onChange={e => setFormData({ ...formData, city: e.target.value })}
                                             title="Seleccionar ciudad de entrega"
                                         >
-                                            {PARAGUAY_LOCATIONS.map(dept => (
+                                            {PARAGUAY_LOCATIONS.map((dept: any) => (
                                                 <optgroup key={dept.department} label={dept.department}>
-                                                    {dept.cities.map(city => (
+                                                    {dept.cities.map((city: any) => (
                                                         <option key={city} value={city}>{city}</option>
                                                     ))}
                                                 </optgroup>
@@ -184,7 +184,7 @@ export default function CarritoPage() {
                             </div>
                         ) : (
                             <>
-                                {cart.map(item => (
+                                {cart.map((item: any) => (
                                     <div key={item.id} className={styles.cartItem}>
                                         <div className={styles.itemImage}>
                                             {item.image && (item.image.startsWith('http') || item.image.startsWith('/')) ? (

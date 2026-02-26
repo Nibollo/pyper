@@ -66,7 +66,7 @@ export default function PedidosPage() {
         }
     };
 
-    const filteredOrders = orders.filter(o => filter === 'Todos' || o.status === filter);
+    const filteredOrders = orders.filter((o: any) => filter === 'Todos' || o.status === filter);
 
     return (
         <div className={styles.pedidos}>
@@ -78,7 +78,7 @@ export default function PedidosPage() {
                         <p className="text-slate-400 text-sm">Administra pedidos de la tienda y solicitudes institucionales.</p>
                     </div>
                     <div className={styles.filters}>
-                        {['Todos', 'Pendiente', 'En Proceso', 'Completado'].map(f => (
+                        {['Todos', 'Pendiente', 'En Proceso', 'Completado'].map((f: any) => (
                             <button
                                 key={f}
                                 className={`${styles.filterBtn} ${filter === f ? styles.activeFilter : ''}`}
@@ -111,7 +111,7 @@ export default function PedidosPage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {filteredOrders.map(order => (
+                                    {filteredOrders.map((order: any) => (
                                         <tr key={order.id}>
                                             <td><strong>#{order.id.slice(0, 4)}</strong></td>
                                             <td>

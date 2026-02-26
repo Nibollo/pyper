@@ -151,7 +151,7 @@ export default function KitsPage() {
 
         // 2. Insertar nuevos
         if (formData.kit_items.length > 0) {
-            const itemsToInsert = formData.kit_items.map(item => ({
+            const itemsToInsert = formData.kit_items.map((item: any) => ({
                 kit_id: currentKitId,
                 product_id: item.product_id,
                 quantity: item.quantity
@@ -178,7 +178,7 @@ export default function KitsPage() {
         if (exists) {
             setFormData({
                 ...formData,
-                kit_items: formData.kit_items.map(item =>
+                kit_items: formData.kit_items.map((item: any) =>
                     item.product_id === product.id ? { ...item, quantity: item.quantity + 1 } : item
                 )
             });
@@ -198,20 +198,20 @@ export default function KitsPage() {
     const removeItemFromKit = (productId: string) => {
         setFormData({
             ...formData,
-            kit_items: formData.kit_items.filter(item => item.product_id !== productId)
+            kit_items: formData.kit_items.filter((item: any) => item.product_id !== productId)
         });
     };
 
     const updateItemQuantity = (productId: string, quantity: number) => {
         setFormData({
             ...formData,
-            kit_items: formData.kit_items.map(item =>
+            kit_items: formData.kit_items.map((item: any) =>
                 item.product_id === productId ? { ...item, quantity: Math.max(1, quantity) } : item
             )
         });
     };
 
-    const filteredInventory = allProducts.filter(p =>
+    const filteredInventory = allProducts.filter((p: any) =>
         p.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -362,7 +362,7 @@ export default function KitsPage() {
                                             />
                                         </div>
                                         <div className={styles.listContent}>
-                                            {filteredInventory.map(product => (
+                                            {filteredInventory.map((product: any) => (
                                                 <div key={product.id} className={styles.productItem}>
                                                     <div className={styles.productInfo}>
                                                         <span>{product.name}</span>
@@ -383,7 +383,7 @@ export default function KitsPage() {
                                             {formData.kit_items.length === 0 ? (
                                                 <p className="p-4 text-center text-sm text-slate-400">No hay productos añadidos.</p>
                                             ) : (
-                                                formData.kit_items.map(item => (
+                                                formData.kit_items.map((item: any) => (
                                                     <div key={item.product_id} className={styles.productItem}>
                                                         <div className={styles.productInfo}>
                                                             <span>{item.name}</span>

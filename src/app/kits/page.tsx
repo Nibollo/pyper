@@ -30,7 +30,7 @@ export default function KitsPage() {
 
             if (data) {
                 // Filtramos en JS para mayor robustez
-                const filteredKits = data.filter(p => {
+                const filteredKits = data.filter((p: any) => {
                     const isKitCategory = p.category?.toLowerCase().includes('kit');
                     const hasItems = p.kit_items && p.kit_items.length > 0;
                     const isActive = p.active !== false;
@@ -85,7 +85,7 @@ export default function KitsPage() {
                     </div>
                 ) : (
                     <div className={styles.kitGrid}>
-                        {kits.map(kit => (
+                        {kits.map((kit: any) => (
                             <div key={kit.id} className={styles.kitItem}>
                                 <Link href={`/productos/${kit.slug || kit.id}`} className={styles.kitLink}>
                                     <div className={styles.itemIcon}>

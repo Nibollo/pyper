@@ -51,10 +51,10 @@ export default function LibreriaPage() {
 
             if (data) {
                 // Filtramos en JS para excluir kits
-                const nonKits = data.filter(p => {
-                    const isKitCategory = p.category?.toLowerCase().includes('kit');
+                const nonKits = data.filter((p: any) => {
+                    const isKit = p.category?.toLowerCase().includes('kit');
                     const hasItems = p.kit_items && p.kit_items.length > 0;
-                    return !isKitCategory && !hasItems;
+                    return !isKit && !hasItems;
                 });
                 setProducts(nonKits);
             }
@@ -68,7 +68,7 @@ export default function LibreriaPage() {
 
     const filteredProducts = selectedCategory === 'Todos'
         ? products
-        : products.filter(p => p.category === selectedCategory);
+        : products.filter((p: any) => p.category === selectedCategory);
 
     return (
         <div className={styles.libreria}>
@@ -84,7 +84,7 @@ export default function LibreriaPage() {
                     <div className={styles.filterGroup}>
                         <h3>Categorías</h3>
                         <ul>
-                            {CATEGORIES.map(cat => (
+                            {CATEGORIES.map((cat: any) => (
                                 <li key={cat}>
                                     <button
                                         className={cat === selectedCategory ? styles.activeFilter : ''}
@@ -104,7 +104,7 @@ export default function LibreriaPage() {
                     </div>
 
                     <div className={styles.productGrid}>
-                        {filteredProducts.map(product => (
+                        {filteredProducts.map((product: any) => (
                             <div key={product.id} className={styles.productCard}>
                                 <Link href={`/productos/${product.slug || product.id}`} className={styles.productLink}>
                                     <div className={styles.productImage}>

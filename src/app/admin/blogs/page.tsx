@@ -529,7 +529,7 @@ export default function AdminBlogsPage() {
                 </header>
 
                 <div className={styles.blogGrid}>
-                    {blogs.map(blog => (
+                    {blogs.map((blog: any) => (
                         <div key={blog.id} className={styles.blogCard}>
                             <div className={styles.cardHead}>
                                 <span className={`${styles.statusTag} ${blog.active ? styles.active : styles.draft}`}>

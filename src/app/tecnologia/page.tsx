@@ -60,7 +60,7 @@ export default function TecnologiaPage() {
 
     const filteredProducts = selectedCategory === 'Todos'
         ? products
-        : products.filter(p => p.category === selectedCategory);
+        : products.filter((p: any) => p.category === selectedCategory);
 
     return (
         <div className={styles.tecnologia}>
@@ -74,7 +74,7 @@ export default function TecnologiaPage() {
 
             <div className={`container ${styles.content}`}>
                 <nav className={styles.techNav}>
-                    {TECH_FILTER_CATEGORIES.map(cat => (
+                    {TECH_FILTER_CATEGORIES.map((cat: any) => (
                         <button
                             key={cat}
                             className={`${styles.navItem} ${cat === selectedCategory ? styles.activeNav : ''}`}
@@ -89,7 +89,7 @@ export default function TecnologiaPage() {
                     {loading && <p className="container text-slate-400 font-bold uppercase tracking-widest py-10">Cargando productos de tecnología...</p>}
 
                     <div className={styles.techGrid}>
-                        {filteredProducts.map(product => (
+                        {filteredProducts.map((product: any) => (
                             <div key={product.id} className={styles.techCard}>
                                 <Link href={`/productos/${product.slug || product.id}`} className={styles.linkWrapper}>
                                     <div className={styles.imageArea}>
