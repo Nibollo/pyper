@@ -32,7 +32,7 @@ export default function AdminDashboard() {
                     .eq('status', 'Completado')
                     .gte('created_at', firstDayOfMonth);
 
-                const monthlyTotal = salesData?.reduce((acc: number, curr: any) => acc + (Number(curr.total_amount) || 0), 0) || 0;
+                const monthlySalesTotal = salesData?.reduce((acc: number, curr: any) => acc + (Number(curr.total_amount) || 0), 0) || 0;
 
                 // 2. Pending Orders
                 const { count: pendingCount } = await supabase
@@ -68,7 +68,7 @@ export default function AdminDashboard() {
                 setCategoryStats(sortedCats);
 
                 setStats([
-                    { label: 'Ventas del Mes', value: `${monthlyTotal.toLocaleString('es-PY')} Gs.`, trend: 'Real', color: '#25D366' },
+                    { label: 'Ventas del Mes', value: `${monthlySalesTotal.toLocaleString('es-PY')} Gs.`, trend: 'Real', color: '#25D366' },
                     { label: 'Pedidos Pendientes', value: String(pendingCount || 0), trend: 'Pendientes', color: '#E30613' },
                     { label: 'Consultas Hoy', value: String(todayCount || 0), trend: 'Nuevas', color: '#0070f3' },
                     { label: 'Items en Catálogo', value: String(productCount || 120), trend: 'Total', color: '#1A1A1A' },
