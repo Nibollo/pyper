@@ -1,0 +1,144 @@
+.institucional {
+    padding-bottom: 5rem;
+}
+
+.header {
+    padding: 5rem 0;
+    background-color: var(--secondary);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 450px;
+    gap: 5rem;
+    align-items: start;
+}
+
+.info h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+}
+
+.info p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+    line-height: 1.7;
+}
+
+.benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.benefits li {
+    font-size: 1.1rem;
+}
+
+.benefits strong {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.formCard {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.formCard h3 {
+    margin-bottom: 0.5rem;
+}
+
+.formCard p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formGroup label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--foreground);
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+    padding: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background-color: #fafafa;
+    outline: none;
+    font-family: inherit;
+}
+
+.formGroup textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+    border-color: var(--primary);
+    background-color: white;
+}
+
+.kitsPromo {
+    margin-top: 5rem;
+}
+
+.promoBox {
+    background-color: var(--foreground);
+    color: white;
+    padding: 4rem;
+    border-radius: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.promoBox h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+
+.promoBox p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    color: #ccc;
+}
+
+@media (max-width: 992px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .formCard {
+        padding: 2rem;
+    }
+}

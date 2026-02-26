@@ -1,0 +1,96 @@
+.loginPage {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary);
+}
+
+.loginCard {
+    background: white;
+    padding: 4rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    margin-bottom: 2rem;
+    gap: 0.5rem;
+}
+
+.logoImg {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logoSubtext {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #334155;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.loginCard h2 {
+    margin-bottom: 0.5rem;
+}
+
+.loginCard p {
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+}
+
+.error {
+    background-color: #fee2e2;
+    color: #dc2626;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    border: 1px solid #fecaca;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.formGroup label {
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.formGroup input {
+    padding: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    outline: none;
+}
+
+.formGroup input:focus {
+    border-color: var(--primary);
+}
+
+.backLink {
+    display: block;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}

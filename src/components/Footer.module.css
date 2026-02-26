@@ -1,0 +1,85 @@
+.footer {
+    background-color: white;
+    color: var(--foreground);
+    padding-top: 6rem;
+    margin-top: auto;
+    border-top: 1px solid var(--border);
+}
+
+.footerGrid {
+    display: grid;
+    grid-template-columns: 1.2fr 2fr;
+    gap: 4rem;
+    padding-bottom: 6rem;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+}
+
+.logoText {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.02em;
+}
+
+.logoSubtext {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--foreground);
+    letter-spacing: 0.3em;
+    margin-top: -2px;
+}
+
+.description {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 320px;
+}
+
+.linksSection {
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.column h4 {
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.column ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.column ul li {
+    color: #eee;
+    font-size: 0.9rem;
+}
+
+.column ul li a:hover {
+    color: var(--primary);
+}
+
+.bottomBar {
+    border-top: 1px solid #333;
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .footerContainer {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}

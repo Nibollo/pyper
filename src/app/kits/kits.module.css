@@ -1,0 +1,202 @@
+.kits {
+    padding-bottom: 8rem;
+}
+
+.header {
+    background-color: #f8fafc;
+    background-image: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    padding: 6rem 0;
+    border-bottom: 2px solid #e53844;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.selectorSection {
+    max-width: 800px !important;
+}
+
+.selectorCard {
+    background: white;
+    padding: 3rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: flex-end;
+    gap: 2rem;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.inputGroup label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--foreground);
+}
+
+.inputGroup select {
+    padding: 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    outline: none;
+    background-color: #fafafa;
+}
+
+.results {
+    margin-top: 5rem;
+}
+
+.resultsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.kitGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.kitItem {
+    background: white;
+    border: 1px solid #eee;
+    padding: 0;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+
+.kitItem:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary);
+}
+
+.kitLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.itemIcon {
+    width: 100%;
+    height: 220px;
+    background: white;
+    border-radius: 0;
+    overflow: hidden;
+    border-bottom: 1px solid #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.itemIcon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Better for products */
+    transition: transform 0.6s ease;
+}
+
+.kitItem:hover .itemIcon img {
+    transform: scale(1.08);
+}
+
+.itemInfo {
+    padding: 2rem;
+}
+
+.itemInfo h4 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+}
+
+.kitActions {
+    padding: 0 2rem 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.buyBtn {
+    background-color: #000;
+    color: white;
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    flex: 1;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    visibility: visible !important;
+}
+
+.wsBtn {
+    border: 2px solid #eee;
+    background: white;
+    color: #444;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.wsBtn:hover {
+    border-color: #25D366;
+    color: #25D366;
+}
+
+.itemInfo p {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.addSingle {
+    width: 40px;
+    height: 40px;
+    background: var(--foreground);
+    color: white;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+.addSingle:hover {
+    background: var(--primary);
+}
+
+.kitSummary {
+    margin-top: 4rem;
+    text-align: right;
+    font-size: 1.5rem;
+}
+
+.kitSummary strong {
+    color: var(--primary);
+}
+
+@media (max-width: 992px) {
+    .selectorCard {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+    }
+}

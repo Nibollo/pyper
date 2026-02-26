@@ -1,0 +1,250 @@
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* Main Content */
+.mainContent {
+    flex-grow: 1;
+    margin-left: 280px;
+    padding: 3rem;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.userProfile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.statCard {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border);
+}
+
+.statLabel {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.statValueRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.statValue {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.statTrend {
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* Table Section */
+.tableSection {
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--border);
+}
+
+.sectionTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.viewAll {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.tableWrapper {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    padding: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table td {
+    padding: 1.25rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+}
+
+.statusBadge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.pendiente {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.completado {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.enproceso {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.editBtn {
+    display: inline-block;
+    background: #f1f5f9;
+    padding: 0.6rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+}
+
+.editBtn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* Dashboard Grid Layout */
+.dashboardGrid {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* Category Card & Progress */
+.categoryCard {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid #edf2f7;
+    margin-bottom: 2rem;
+}
+
+.catRow {
+    margin-bottom: 1.5rem;
+}
+
+.progressBar {
+    height: 8px;
+    background: #f1f5f9;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 4px;
+}
+
+/* Quick Actions */
+.quickActions {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid #edf2f7;
+}
+
+.actionBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 2rem 1.5rem;
+    background: #f8fafc;
+    border: 1px solid #edf2f7;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #475569;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+}
+
+.actionBtn:hover {
+    background: white;
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(227, 6, 19, 0.08);
+}
+
+.actionBtn span {
+    font-size: 1.8rem;
+    color: var(--primary);
+}
+
+@media (max-width: 1200px) {
+    .dashboardGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 992px) {
+    .mainContent {
+        margin-left: 0px;
+    }
+}

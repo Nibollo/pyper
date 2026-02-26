@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #e53844;
+    --background-light: #f8f6f6;
+    --background-dark: #211112;
+  }
+
+  body {
+    @apply bg-background-light text-slate-900 font-display overflow-x-hidden;
+  }
+
+  .dark body {
+    @apply bg-background-dark text-slate-100;
+  }
+}
+
+@layer components {
+
+  /* Fix Material Symbols */
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'liga';
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, #e53844 0%, #9b1c24 100%);
+  }
+
+  .organic-shape {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-2 shadow-xl shadow-primary/10;
+  }
+}

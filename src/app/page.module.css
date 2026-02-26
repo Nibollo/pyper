@@ -1,0 +1,273 @@
+.hero {
+  padding: 8rem 0;
+  background: radial-gradient(circle at top right, rgba(229, 56, 68, 0.05), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(229, 56, 68, 0.02), transparent 30%),
+    #FFFFFF;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroContainer {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.heroContent h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--foreground);
+  margin-bottom: 1.5rem;
+}
+
+.heroContent p {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+.heroBtns {
+  display: flex;
+  gap: 1rem;
+}
+
+.heroImageWrapper {
+  display: flex;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.heroImagePlaceholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: white;
+  border-radius: calc(var(--radius) * 2);
+  box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  transform: rotateY(-5deg) rotateX(5deg);
+  transition: transform 0.5s ease;
+}
+
+.heroImagePlaceholder:hover {
+  transform: rotateY(0) rotateX(0);
+}
+
+.heroIllustration {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Categories Section */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionHeader h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.sectionHeader p {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.categoryCard {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.categoryCard:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary);
+}
+
+.cardContent h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.cardContent p {
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.cardBtn {
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.illustration {
+  font-size: 4rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  opacity: 0.15;
+  transition: transform 0.4s ease;
+}
+
+.categoryCard:hover .illustration {
+  transform: scale(1.2) rotate(10deg);
+  opacity: 0.3;
+}
+
+/* Services Grid */
+.services {
+  background-color: var(--secondary);
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.serviceItem {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: var(--radius);
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.serviceItem:hover {
+  border-color: var(--primary);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
+}
+
+.serviceIcon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1.5rem;
+  background: rgba(229, 56, 68, 0.05);
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.serviceItem h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.serviceItem p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Trust Banner */
+.trustBanner {
+  background-color: var(--foreground);
+  color: white;
+  padding: 4rem 0;
+}
+
+.bannerGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 2rem;
+}
+
+.bannerItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.bannerItem strong {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.bannerItem span {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.separator {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .heroContainer {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .heroContent p {
+    margin: 0 auto 2.5rem;
+  }
+
+  .heroBtns {
+    justify-content: center;
+  }
+
+  .categoryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroContent h1 {
+    font-size: 2.5rem;
+  }
+
+  .bannerGrid {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .selector {
+    display: none;
+  }
+}
