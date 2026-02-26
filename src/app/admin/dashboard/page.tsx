@@ -1,5 +1,5 @@
 'use client';
-// Build sanity check - version 2
+// BUILD VERSION: 4 - VERIFYING SYNC WITH VERCEL
 
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
