@@ -7,4 +7,6 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 const isValidUrl = supabaseUrl.startsWith('http');
 const finalUrl = isValidUrl ? supabaseUrl : 'https://placeholder.supabase.co';
 
-export const supabase = createClient(finalUrl, supabaseAnonKey);
+export const supabase = (supabaseUrl && supabaseAnonKey)
+    ? createClient(finalUrl, supabaseAnonKey)
+    : {} as any; // Fallback para evitar errores de evaluación del módulo durante el build
