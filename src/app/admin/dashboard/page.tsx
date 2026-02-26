@@ -56,11 +56,11 @@ export default function AdminDashboard() {
                     .select('category');
 
                 const catMap: Record<string, number> = {};
-                products?.forEach(p => {
+                products?.forEach((p: any) => {
                     if (p.category) catMap[p.category] = (catMap[p.category] || 0) + 1;
                 });
                 const sortedCats = Object.entries(catMap)
-                    .map(([name, count]) => ({ name, count }))
+                    .map(([name, count]: [string, number]) => ({ name, count }))
                     .sort((a, b) => b.count - a.count)
                     .slice(0, 5);
 
