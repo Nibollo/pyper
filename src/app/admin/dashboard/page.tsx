@@ -31,7 +31,7 @@ export default function AdminDashboard() {
                     .eq('status', 'Completado')
                     .gte('created_at', firstDayOfMonth);
 
-                const monthlyTotal = salesData?.reduce((acc, curr) => acc + (Number(curr.total_amount) || 0), 0) || 0;
+                const monthlyTotal = salesData?.reduce((acc: number, curr: any) => acc + (Number(curr.total_amount) || 0), 0) || 0;
 
                 // 2. Pending Orders
                 const { count: pendingCount } = await supabase
