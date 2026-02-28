@@ -33,13 +33,13 @@ export default function Footer() {
                     <div className="space-y-6 flex flex-col items-center md:items-start text-center md:text-left">
                         <div className="flex items-center gap-3">
                             {settings.footer_logo_url ? (
-                                <img src={settings.footer_logo_url} alt={settings.business_name} className="h-16 w-auto object-contain" />
+                                <img src={settings.footer_logo_url} alt={settings.business_name} className="h-10 sm:h-16 w-auto object-contain" />
                             ) : (
                                 <>
                                     <div className="bg-primary p-2 rounded-lg">
-                                        <span className="material-symbols-outlined text-white text-2xl">school</span>
+                                        <span className="material-symbols-outlined text-white text-xl sm:text-2xl">school</span>
                                     </div>
-                                    <h2 className="text-white text-2xl font-black tracking-tighter uppercase">
+                                    <h2 className="text-white text-xl sm:text-2xl font-black tracking-tighter uppercase">
                                         {settings.logo_header_text || 'PYPER'}
                                     </h2>
                                 </>

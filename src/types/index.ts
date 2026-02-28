@@ -81,3 +81,16 @@ export interface HomeSection {
 export interface FeatureFlags {
     [key: string]: boolean;
 }
+
+export interface Banner {
+    id: string;
+    image_url: string;
+    link_url?: string;
+    start_time: string; // HH:MM:SS
+    end_time: string;   // HH:MM:SS
+    is_active: boolean;
+    always_active: boolean;
+    placement: string;
+    days_of_week: string[];
+    created_at?: string;
+}

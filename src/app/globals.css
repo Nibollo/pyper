@@ -10,7 +10,16 @@
   }
 
   body {
-    @apply bg-background-light text-slate-900 font-display overflow-x-hidden;
+    @apply bg-background-light text-slate-900 font-display transition-colors duration-300;
+    font-size: clamp(14px, 1vw + 10px, 16px);
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Improved container for mobile */
+  .container-responsive {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .dark body {

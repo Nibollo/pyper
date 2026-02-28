@@ -7,6 +7,9 @@ import { useConfig } from '@/context/ConfigContext';
 import { supabase } from '@/lib/supabase';
 import { Product } from '@/types';
 import { useCart } from '@/context/CartContext';
+import AdBanner from '@/components/AdBanner';
+import LogoCarousel from '@/components/LogoCarousel';
+import PopupBanner from '@/components/PopupBanner';
 
 export default function Home() {
   const { heroSlides, homeSections, featureFlags, settings, loading: configLoading } = useConfig();
@@ -72,7 +75,11 @@ export default function Home() {
   const extras = homeSections.filter((s: any) => s.category === 'extras');
 
   return (
-    <div className="home-wrapper">
+    <div className="bg-white min-h-screen">
+      <PopupBanner />
+      <div className="pt-8">
+        <AdBanner />
+      </div>
       {/* Hero Section */}
       {featureFlags.hero_slider !== false && (
         <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-32 bg-white">
@@ -86,7 +93,7 @@ export default function Home() {
                     {mainSlide.badge_text}
                   </div>
                 )}
-                <h1 className="text-5xl lg:text-7xl font-black leading-tight text-slate-900">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight text-slate-900">
                   {mainSlide.title.split('educación').length > 1 ? (
                     <>
                       {mainSlide.title.split('educación')[0]}
@@ -97,14 +104,14 @@ export default function Home() {
                     mainSlide.title
                   )}
                 </h1>
-                <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
+                <p className="text-base sm:text-lg text-slate-600 max-w-lg leading-relaxed">
                   {mainSlide.subtitle}
                 </p>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-col sm:flex-row gap-4">
                   {mainSlide.button_1_text && (
                     <Link
                       href={mainSlide.button_1_link || '#'}
-                      className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-primary/30 transition-all flex items-center gap-2"
+                      className="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-bold text-base sm:text-lg shadow-xl shadow-primary/30 transition-all flex items-center justify-center sm:justify-start gap-2"
                     >
                       {mainSlide.button_1_text}
                       <span className="material-symbols-outlined">arrow_forward</span>
@@ -113,20 +120,20 @@ export default function Home() {
                   {mainSlide.button_2_text && (
                     <Link
                       href={mainSlide.button_2_link || '#'}
-                      className="bg-white border-2 border-slate-200 hover:border-primary px-8 py-4 rounded-xl font-bold text-lg transition-all"
+                      className="bg-white border-2 border-slate-200 hover:border-primary px-8 py-4 rounded-xl font-bold text-base sm:text-lg transition-all text-center"
                     >
                       {mainSlide.button_2_text}
                     </Link>
                   )}
                 </div>
                 {mainSlide.trust_text && (
-                  <div className="flex items-center gap-6 pt-4">
-                    <div className="flex -space-x-3">
-                      <div className="w-12 h-12 rounded-full border-4 border-white bg-slate-200 flex items-center justify-center text-xs font-bold ring-2 ring-primary/5">P1</div>
-                      <div className="w-12 h-12 rounded-full border-4 border-white bg-slate-300 flex items-center justify-center text-xs font-bold ring-2 ring-primary/5">P2</div>
-                      <div className="w-12 h-12 rounded-full border-4 border-white bg-slate-400 flex items-center justify-center text-xs font-bold ring-2 ring-primary/5">P3</div>
+                  <div className="flex items-center gap-4 sm:gap-6 pt-4">
+                    <div className="hidden sm:flex -space-x-3">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-4 border-white bg-slate-200 flex items-center justify-center text-xs font-bold ring-2 ring-primary/5">P1</div>
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-4 border-white bg-slate-300 flex items-center justify-center text-xs font-bold ring-2 ring-primary/5">P2</div>
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-4 border-white bg-slate-400 flex items-center justify-center text-xs font-bold ring-2 ring-primary/5">P3</div>
                     </div>
-                    <p className="text-sm font-medium text-slate-500 underline decoration-primary/30">{mainSlide.trust_text}</p>
+                    <p className="text-xs sm:text-sm font-medium text-slate-500 underline decoration-primary/30">{mainSlide.trust_text}</p>
                   </div>
                 )}
               </div>
@@ -141,13 +148,13 @@ export default function Home() {
                     )}
                   </div>
                 </div>
-                <div className="absolute -bottom-8 -right-8 bg-white p-6 rounded-2xl shadow-xl flex items-center gap-4 border border-slate-100 z-20">
-                  <div className="bg-green-100 p-3 rounded-full text-green-600">
-                    <span className="material-symbols-outlined">verified</span>
+                <div className="absolute -bottom-4 -right-4 sm:-bottom-8 sm:-right-8 bg-white p-4 sm:p-6 rounded-2xl shadow-xl flex items-center gap-3 sm:gap-4 border border-slate-100 z-20">
+                  <div className="bg-green-100 p-2 sm:p-3 rounded-full text-green-600">
+                    <span className="material-symbols-outlined text-base sm:text-xl">verified</span>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Garantía</p>
-                    <p className="text-sm font-black">100% Calidad Pyper</p>
+                    <p className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest leading-none mb-1">Garantía</p>
+                    <p className="text-xs sm:text-sm font-black leading-none">100% Calidad Pyper</p>
                   </div>
                 </div>
               </div>
@@ -171,15 +178,15 @@ export default function Home() {
                     <Link
                       key={section.id}
                       href={section.link || '#'}
-                      className="group relative overflow-hidden rounded-[2.5rem] h-[320px] p-8 flex flex-col justify-between card-hover shadow-xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                      className="group relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] h-[220px] sm:h-[320px] p-6 sm:p-8 flex flex-col justify-between card-hover shadow-xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
                       style={{ backgroundColor: section.bg_color || '#2563eb' }}
                     >
-                      <div className="bg-white/20 w-16 h-16 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <span className="material-symbols-outlined text-white text-3xl">{section.icon || 'star'}</span>
+                      <div className="bg-white/20 w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <span className="material-symbols-outlined text-white text-2xl sm:text-3xl">{section.icon || 'star'}</span>
                       </div>
                       <div className="relative z-10">
-                        <h3 className="text-white text-4xl font-black mb-2 tracking-tight">{section.title}</h3>
-                        <p className="text-white/90 font-medium text-lg leading-tight opacity-90">{section.description}</p>
+                        <h3 className="text-white text-2xl sm:text-4xl font-black mb-1 sm:mb-2 tracking-tight">{section.title}</h3>
+                        <p className="text-white/90 font-medium text-sm sm:text-lg leading-tight opacity-90">{section.description}</p>
                       </div>
                       {/* Decorative elements */}
                       <div className="absolute -right-8 -bottom-8 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
@@ -233,33 +240,33 @@ export default function Home() {
       )}
 
       {/* Featured Kits Block */}
-      <section className="py-20 hero-gradient text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col lg:flex-row items-end justify-between mb-12 gap-6">
-            <div className="max-w-xl">
-              <span className="text-white/80 font-bold uppercase tracking-widest text-sm mb-2 block">
-                {settings.featured_kits_subtitle || 'SELECCIÓN ESPECIAL'}
-              </span>
-              <h2 className="text-5xl font-black tracking-tight leading-none uppercase italic">
-                {settings.featured_kits_title?.split(' ').length > 2 ? (
-                  <>
-                    {settings.featured_kits_title.split(' ').slice(0, 2).join(' ')} <br />
-                    <span className="text-amber-400">{settings.featured_kits_title.split(' ').slice(2).join(' ')}</span>
-                  </>
-                ) : (
-                  settings.featured_kits_title || 'KITS ESCOLARES DESTACADOS'
-                )}
-              </h2>
+      {featuredProducts.length > 0 && (
+        <section className="py-20 hero-gradient text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '40px 40px' }}></div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col lg:flex-row items-end justify-between mb-12 gap-6">
+              <div className="max-w-xl">
+                <span className="text-white/80 font-bold uppercase tracking-widest text-sm mb-2 block">
+                  {settings.featured_kits_subtitle || 'SELECCIÓN ESPECIAL'}
+                </span>
+                <h2 className="text-5xl font-black tracking-tight leading-none uppercase italic">
+                  {settings.featured_kits_title?.split(' ').length > 2 ? (
+                    <>
+                      {settings.featured_kits_title.split(' ').slice(0, 2).join(' ')} <br />
+                      <span className="text-amber-400">{settings.featured_kits_title.split(' ').slice(2).join(' ')}</span>
+                    </>
+                  ) : (
+                    settings.featured_kits_title || 'KITS ESCOLARES DESTACADOS'
+                  )}
+                </h2>
+              </div>
+              <Link href={settings.featured_kits_button_link || '/kits'} className="bg-white text-primary px-8 py-3 rounded-xl font-black uppercase text-sm tracking-widest hover:bg-slate-100 transition-colors">
+                {settings.featured_kits_button_text || 'Ver todos los kits'}
+              </Link>
             </div>
-            <Link href={settings.featured_kits_button_link || '/kits'} className="bg-white text-primary px-8 py-3 rounded-xl font-black uppercase text-sm tracking-widest hover:bg-slate-100 transition-colors">
-              {settings.featured_kits_button_text || 'Ver todos los kits'}
-            </Link>
-          </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {featuredProducts.length > 0 ? (
-              featuredProducts.map((product, idx) => (
+            <div className="grid md:grid-cols-3 gap-8">
+              {featuredProducts.map((product, idx) => (
                 <div key={product.id} className={`bg-white rounded-[2.5rem] p-4 text-slate-900 shadow-2xl transform transition-all hover:scale-105 ${idx === 0 ? 'hover:-rotate-2' : idx === 1 ? 'hover:rotate-1' : 'hover:rotate-2'}`}>
                   <div className="relative bg-slate-100 rounded-[2rem] overflow-hidden mb-6 aspect-square group flex items-center justify-center">
                     {(product.main_image || product.image_url) ? (
@@ -288,15 +295,11 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              ))
-            ) : (
-              <p className="text-white/60 font-bold italic col-span-3 text-center py-20 bg-black/5 rounded-3xl border-4 border-dashed border-white/10 uppercase tracking-widest">
-                Gestiona tus kits destacados desde el panel de administración
-              </p>
-            )}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Services Section */}
       <section className="py-24 bg-slate-50 overflow-hidden">
@@ -313,7 +316,7 @@ export default function Home() {
               </div>
             </div>
             <div className="w-full md:w-1/2 space-y-8">
-              <h2 className="text-4xl lg:text-5xl font-black tracking-tight leading-none text-slate-900">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-none text-slate-900">
                 {settings.services_title?.toLowerCase().includes('librería') ? (
                   <>
                     {settings.services_title.split(/librería/i)[0]}
@@ -347,24 +350,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Latest Products Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
-            <div className="max-w-xl">
-              <span className="text-primary font-bold uppercase tracking-widest text-sm mb-2 block">CATÁLOGO ACTUALIZADO</span>
-              <h2 className="text-5xl font-black text-slate-900 tracking-tight leading-none uppercase italic">
-                Nuevos <span className="text-primary">Ingresos</span>
-              </h2>
-            </div>
-            <Link href="/productos" className="border-2 border-slate-200 text-slate-900 px-8 py-3 rounded-xl font-black uppercase text-sm tracking-widest hover:border-primary hover:text-primary transition-all">
-              Explorar Catálogo
-            </Link>
-          </div>
+      {/* Middle Ad Space */}
+      <AdBanner placement="home_middle" />
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {latestProducts.length > 0 ? (
-              latestProducts.map((product) => (
+      {/* Latest Products Section */}
+      {latestProducts.length > 0 && (
+        <section className="py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+              <div className="max-w-xl">
+                <span className="text-primary font-bold uppercase tracking-widest text-sm mb-2 block">CATÁLOGO ACTUALIZADO</span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-none uppercase italic">
+                  Nuevos <span className="text-primary">Ingresos</span>
+                </h2>
+              </div>
+              <Link href="/productos" className="border-2 border-slate-200 text-slate-900 px-8 py-3 rounded-xl font-black uppercase text-sm tracking-widest hover:border-primary hover:text-primary transition-all">
+                Explorar Catálogo
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {latestProducts.map((product) => (
                 <Link href={`/productos/${product.slug}`} key={product.id} className="group bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100 transition-all hover:shadow-2xl hover:-translate-y-2">
                   <div className="relative aspect-[4/5] bg-white rounded-[2rem] overflow-hidden mb-6 flex items-center justify-center">
                     {(product.main_image || product.image_url) ? (
@@ -387,15 +393,11 @@ export default function Home() {
                     </div>
                   </div>
                 </Link>
-              ))
-            ) : (
-              <div className="col-span-3 py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200 flex items-center justify-center">
-                <p className="text-slate-400 font-bold italic uppercase tracking-widest">Cargando productos exclusivos...</p>
-              </div>
-            )}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Latest Blogs Section */}
       <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
@@ -403,7 +405,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <span className="text-primary font-bold uppercase tracking-widest text-sm mb-2 block">CONTENIDO EDUCATIVO</span>
-            <h2 className="text-5xl lg:text-6xl font-black tracking-tighter uppercase leading-none italic mb-4">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter uppercase leading-none italic mb-4">
               Blog <span className="text-primary italic">&</span> Novedades
             </h2>
             <div className="h-1.5 w-24 bg-primary mx-auto rounded-full"></div>
@@ -451,6 +453,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Logo Carousel Section */}
+      <LogoCarousel />
 
       {/* Trust/Stats Section */}
       <section className="py-16 bg-white">

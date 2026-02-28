@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
 import { CartProvider } from "@/context/CartContext";
 import { ConfigProvider } from "@/context/ConfigContext";
 import { supabase } from "@/lib/supabase";
@@ -46,6 +48,8 @@ export default function RootLayout({
             <Navbar />
             <main>{children}</main>
             <Footer />
+            <FloatingWhatsApp />
+            <AnalyticsTracker />
           </CartProvider>
         </ConfigProvider>
       </body>

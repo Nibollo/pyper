@@ -1,0 +1,53 @@
+.bannerSection {
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.bannerWrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    border: 4px solid white;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 450px;
+}
+
+.bannerWrapper:hover .bannerImage {
+    transform: scale(1.05);
+}
+
+.bannerLink {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bannerImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.7s ease-in-out;
+    max-height: 450px;
+}
+
+@media (min-width: 768px) {
+    .bannerImage {
+        object-fit: cover;
+    }
+}
+
+.gradientOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.1), transparent);
+    pointer-events: none;
+}
