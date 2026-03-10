@@ -68,7 +68,10 @@ export default function AdsAdmin() {
                 is_active: true,
                 always_active: true,
                 placement: 'home_top',
-                days_of_week: [...DAYS]
+                days_of_week: [...DAYS],
+                display_duration: 8,
+                appearance_frequency: 25,
+                whatsapp_message: 'He visto tu anuncio en pyper.com.py'
             });
         }
         setIsModalOpen(true);
@@ -299,6 +302,47 @@ export default function AdsAdmin() {
                                         onChange={(e) => setEditingAd((prev: any) => ({ ...prev, is_active: e.target.checked }))}
                                     />
                                     <label htmlFor="is_active">Habilitar Anuncio</label>
+                                </div>
+
+                                <div className={styles.fullWidth}>
+                                    <h3 className="text-sm font-bold mt-4 mb-2 border-b border-slate-100 pb-2">Control de Aparición (Solo para Tarjeta Flotante)</h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div className={styles.formGroup}>
+                                            <label>Tiempo Visible (segundos)</label>
+                                            <input
+                                                type="number"
+                                                min="1"
+                                                max="60"
+                                                value={editingAd?.display_duration ?? 8}
+                                                onChange={(e) => setEditingAd((prev: any) => ({ ...prev, display_duration: parseInt(e.target.value) }))}
+                                                disabled={editingAd?.placement !== 'recommendation'}
+                                            />
+                                            <p className="text-[10px] text-slate-400 mt-1 italic">Ej: 8 para 8 segundos de exposición.</p>
+                                        </div>
+                                        <div className={styles.formGroup}>
+                                            <label>Frecuencia (segundos)</label>
+                                            <input
+                                                type="number"
+                                                min="0"
+                                                max="3600"
+                                                value={editingAd?.appearance_frequency ?? 25}
+                                                onChange={(e) => setEditingAd((prev: any) => ({ ...prev, appearance_frequency: parseInt(e.target.value) }))}
+                                                disabled={editingAd?.placement !== 'recommendation'}
+                                            />
+                                            <p className="text-[10px] text-slate-400 mt-1 italic">Ej: 25 para reaparecer cada 25s. Usa 0 para "Solo al cargar".</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className={`${styles.formGroup} ${styles.fullWidth}`}>
+                                    <label>Mensaje Automático WhatsApp</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Hola! Vi tu anuncio en Pyper..."
+                                        value={editingAd?.whatsapp_message || ''}
+                                        onChange={(e) => setEditingAd((prev: any) => ({ ...prev, whatsapp_message: e.target.value }))}
+                                    />
+                                    <p className="text-[10px] text-slate-400 mt-1">Este mensaje aparecerá cuando el cliente le contacte por WhatsApp desde el anuncio.</p>
                                 </div>
                             </div>
 

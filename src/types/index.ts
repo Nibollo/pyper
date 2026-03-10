@@ -92,5 +92,8 @@ export interface Banner {
     always_active: boolean;
     placement: string;
     days_of_week: string[];
+    display_duration?: number;      // Seconds to stay visible
+    appearance_frequency?: number;  // Seconds between appearances (0 for on refresh)
+    whatsapp_message?: string;      // Custom message for WhatsApp links
     created_at?: string;
 }

@@ -7,9 +7,11 @@ interface ImageUploadProps {
     onUploadComplete: (url: string) => void;
     currentImage?: string;
     label?: string;
+    bucket?: string;
+    path?: string;
 }
 
-export default function ImageUpload({ onUploadComplete, currentImage, label }: ImageUploadProps) {
+export default function ImageUpload({ onUploadComplete, currentImage, label, bucket = 'blog-images', path = 'blog' }: ImageUploadProps) {
     const [uploading, setUploading] = useState(false);
     const [progress, setProgress] = useState(0);
 
@@ -25,12 +27,12 @@ export default function ImageUpload({ onUploadComplete, currentImage, label }: I
             const file = event.target.files[0];
             const fileExt = file.name.split('.').pop();
             const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
-            const filePath = `blog/${fileName}`;
+            const filePath = `${path}/${fileName}`;
 
             setProgress(30);
 
             let { error: uploadError } = await supabase.storage
-                .from('blog-images')
+                .from(bucket)
                 .upload(filePath, file);
 
             if (uploadError) throw uploadError;
@@ -38,7 +40,7 @@ export default function ImageUpload({ onUploadComplete, currentImage, label }: I
             setProgress(80);
 
             const { data } = supabase.storage
-                .from('blog-images')
+                .from(bucket)
                 .getPublicUrl(filePath);
 
             onUploadComplete(data.publicUrl);

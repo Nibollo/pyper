@@ -39,18 +39,22 @@ export default function FloatingRecommendation() {
         if (banners.length === 0) return;
 
         const randomIndex = Math.floor(Math.random() * banners.length);
-        setCurrentBanner(banners[randomIndex]);
+        const banner = banners[randomIndex];
+        setCurrentBanner(banner);
         setIsVisible(true);
         setIsHiding(false);
 
-        // Hide after 8 seconds
+        // Use custom duration or default to 8s
+        const duration = (banner.display_duration || 8) * 1000;
+
+        // Hide after specified duration
         setTimeout(() => {
             setIsHiding(true);
             setTimeout(() => {
                 setIsVisible(false);
                 setCurrentBanner(null);
             }, 500); // Wait for slide out animation
-        }, 8000);
+        }, duration);
     }, [banners]);
 
     // Cycle logic
@@ -60,18 +64,46 @@ export default function FloatingRecommendation() {
         // Start initial cycle after 5 seconds
         const initialDelay = setTimeout(showRandomBanner, 5000);
 
-        // Repeat every 20-30 seconds (8s visible + 12-22s hidden)
-        const interval = setInterval(() => {
-            if (!isVisible) {
-                showRandomBanner();
-            }
-        }, 25000);
+        // Repeat based on frequency
+        // We'll use the frequency of the first active recommendation banner as a baseline
+        const firstBanner = banners[0];
+        const frequency = firstBanner.appearance_frequency;
+
+        let interval: NodeJS.Timeout | null = null;
+        
+        // Only setup interval if frequency > 0
+        if (frequency && frequency > 0) {
+            interval = setInterval(() => {
+                if (!isVisible) {
+                    showRandomBanner();
+                }
+            }, frequency * 1000);
+        }
 
         return () => {
             clearTimeout(initialDelay);
-            clearInterval(interval);
+            if (interval) clearInterval(interval);
         };
     }, [banners, isVisible, showRandomBanner]);
+
+    const getFinalLink = (banner: Banner) => {
+        if (!banner.link_url) return '';
+        
+        let url = banner.link_url;
+        
+        // If it's a WhatsApp link and has a custom message
+        if ((url.includes('wa.me') || url.includes('whatsapp.com')) && banner.whatsapp_message) {
+            const separator = url.includes('?') ? '&' : '?';
+            const message = encodeURIComponent(banner.whatsapp_message);
+            
+            // Avoid duplicating text parameter if it already exists
+            if (!url.includes('text=')) {
+                url = `${url}${separator}text=${message}`;
+            }
+        }
+        
+        return url;
+    };
 
     const handleClose = () => {
         setIsHiding(true);
@@ -94,7 +126,7 @@ export default function FloatingRecommendation() {
                 </div>
                 <div className={styles.content}>
                     {currentBanner.link_url ? (
-                        <Link href={currentBanner.link_url} target="_blank" onClick={handleClose}>
+                        <Link href={getFinalLink(currentBanner)} target="_blank" onClick={handleClose}>
                             <OptimizedImage
                                 src={currentBanner.image_url}
                                 alt="Recomendación"

@@ -78,6 +78,12 @@ export default function Navbar() {
                                     <Link className="text-sm font-bold hover:text-primary transition-colors uppercase tracking-wider" href="/servicios">Servicios</Link>
                                 </>
                             )}
+                            <Link 
+                                href="/tiendas" 
+                                className={`text-sm font-bold hover:text-primary transition-colors uppercase tracking-wider ${pathname === '/tiendas' ? 'text-primary' : ''}`}
+                            >
+                                Tiendas asociadas
+                            </Link>
                         </nav>
                     </div>
 
@@ -145,7 +151,7 @@ export default function Navbar() {
                                 { label: 'Tecnología', link: '/tecnologia', icon: 'devices' },
                                 { label: 'Kits Escolares', link: '/kits', icon: 'package_2' },
                                 { label: 'Servicios', link: '/servicios', icon: 'handyman' }
-                            ]).map((item: any, idx) => {
+                            ]).concat([{ label: 'Tiendas asociadas', link: '/tiendas', icon: 'storefront' }]).map((item: any, idx) => {
                                 const menuIcon = item.icon || (item.label.toLowerCase().includes('lib') ? 'auto_stories' : item.label.toLowerCase().includes('tec') ? 'devices' : item.label.toLowerCase().includes('kit') ? 'package_2' : 'arrow_forward');
 
                                 return (

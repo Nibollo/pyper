@@ -8,6 +8,7 @@ const navItems = [
     { label: 'Pedidos', icon: 'shopping_cart', path: '/admin/pedidos' },
     { label: 'Gestión de Kits', icon: 'inventory', path: '/admin/kits' },
     { label: 'Anuncios', icon: 'campaign', path: '/admin/ads' },
+    { label: 'Locales Asociados', icon: 'storefront', path: '/admin/tiendas' },
     { label: 'Páginas CMS', icon: 'description', path: '/admin/cms' },
     { label: 'Blogs & SEO', icon: 'edit_note', path: '/admin/blogs' },
     { label: 'Configuración', icon: 'settings', path: '/admin/config' },
