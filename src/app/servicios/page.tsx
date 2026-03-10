@@ -2,6 +2,7 @@
 
 import { useConfig } from '@/context/ConfigContext';
 import styles from './servicios.module.css';
+import OptimizedImage from '@/components/OptimizedImage';
 
 export default function ServiciosPage() {
     const { settings } = useConfig();
@@ -60,7 +61,13 @@ export default function ServiciosPage() {
                     {services.map((svc, index) => (
                         <div key={index} className={styles.serviceCard}>
                             <div className={styles.imageContainer}>
-                                <img src={svc.image} alt={svc.title} className={styles.serviceImage} />
+                                <OptimizedImage
+                                    src={svc.image}
+                                    alt={svc.title}
+                                    width={600}
+                                    height={400}
+                                    className={styles.serviceImage}
+                                />
                             </div>
                             <h3>{svc.title}</h3>
                             <p>{svc.description}</p>

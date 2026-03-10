@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
 import { useConfig } from '@/context/ConfigContext';
 import Link from 'next/link';
+import OptimizedImage from '@/components/OptimizedImage';
 
 export default function ProductDetail() {
     const params = useParams();
@@ -88,10 +89,13 @@ export default function ProductDetail() {
                         <div className="absolute -inset-4 bg-primary/5 rounded-[60px] blur-3xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
                         <div className="relative bg-slate-50 rounded-[60px] aspect-square overflow-hidden border border-slate-100 shadow-2xl">
                             {(product.main_image || product.image_url) ? (
-                                <img
+                                <OptimizedImage
                                     src={product.main_image || product.image_url}
                                     alt={product.name}
+                                    width={800}
+                                    height={800}
                                     className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105"
+                                    priority={true}
                                 />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center">
@@ -150,7 +154,13 @@ export default function ProductDetail() {
                                         <div key={item.id} className="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100 group hover:border-primary/20 transition-colors">
                                             <div className="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-xl overflow-hidden shadow-sm">
                                                 {item.product?.main_image ? (
-                                                    <img src={item.product.main_image} alt={item.product.name} className="w-full h-full object-contain" />
+                                                    <OptimizedImage
+                                                        src={item.product.main_image}
+                                                        alt={item.product.name}
+                                                        width={100}
+                                                        height={100}
+                                                        className="w-full h-full object-contain"
+                                                    />
                                                 ) : '📓'}
                                             </div>
                                             <div className="flex-1">

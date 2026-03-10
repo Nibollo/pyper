@@ -5,6 +5,7 @@ import { Banner } from '@/types';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import bannerStyles from './AdBanner.module.css';
+import OptimizedImage from './OptimizedImage';
 
 export default function AdBanner({ placement = 'home_top' }: { placement?: string }) {
     const [ads, setAds] = useState<Banner[]>([]);
@@ -67,19 +68,23 @@ export default function AdBanner({ placement = 'home_top' }: { placement?: strin
                 <div key={ad.id} className={bannerStyles.bannerWrapper}>
                     {ad.link_url ? (
                         <Link href={ad.link_url} target="_blank" rel="noopener noreferrer" className={bannerStyles.bannerLink}>
-                            <img
+                            <OptimizedImage
                                 src={ad.image_url}
                                 alt="Promoción"
+                                width={1280}
+                                height={300}
                                 className={bannerStyles.bannerImage}
-                                onError={(e) => (e.currentTarget.style.display = 'none')}
+                                priority={placement === 'home_top'}
                             />
                         </Link>
                     ) : (
-                        <img
+                        <OptimizedImage
                             src={ad.image_url}
                             alt="Promoción"
+                            width={1280}
+                            height={300}
                             className={bannerStyles.bannerImage}
-                            onError={(e) => (e.currentTarget.style.display = 'none')}
+                            priority={placement === 'home_top'}
                         />
                     )}
                     <div className={bannerStyles.gradientOverlay}></div>

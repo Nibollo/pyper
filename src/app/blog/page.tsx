@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
+import OptimizedImage from '@/components/OptimizedImage';
 
 export default function BlogList() {
     const [blogs, setBlogs] = useState<any[]>([]);
@@ -55,7 +56,13 @@ export default function BlogList() {
                             <Link href={`/blog/${blog.slug}`} key={blog.id} className="group bg-white rounded-3xl overflow-hidden border border-slate-100 transition-all hover:shadow-2xl hover:-translate-y-2">
                                 <div className="aspect-[16/10] bg-slate-200 relative overflow-hidden">
                                     {blog.cover_image ? (
-                                        <img src={blog.cover_image} alt={blog.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" />
+                                        <OptimizedImage
+                                            src={blog.cover_image}
+                                            alt={blog.title}
+                                            width={600}
+                                            height={375}
+                                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                                        />
                                     ) : (
                                         <div className="w-full h-full flex items-center justify-center bg-slate-100 group-hover:bg-primary/5 transition-colors">
                                             <span className="material-symbols-outlined text-[100px] text-slate-200 group-hover:text-primary/20 transition-all font-light">newspaper</span>

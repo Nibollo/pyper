@@ -26,13 +26,21 @@ const DEFAULT_SETTINGS: SiteSettings = {
     copyright: 'Pyper Paraguay. Todos los derechos reservados.'
 };
 
-export function ConfigProvider({ children }: { children: React.ReactNode }) {
-    const [settings, setSettings] = useState<SiteSettings>(DEFAULT_SETTINGS);
-    const [navigation, setNavigation] = useState<NavItem[]>([]);
+export function ConfigProvider({
+    children,
+    initialSettings = DEFAULT_SETTINGS,
+    initialNavigation = []
+}: {
+    children: React.ReactNode,
+    initialSettings?: SiteSettings,
+    initialNavigation?: NavItem[]
+}) {
+    const [settings, setSettings] = useState<SiteSettings>(initialSettings);
+    const [navigation, setNavigation] = useState<NavItem[]>(initialNavigation);
     const [heroSlides, setHeroSlides] = useState<HeroSlide[]>([]);
     const [homeSections, setHomeSections] = useState<HomeSection[]>([]);
     const [featureFlags, setFeatureFlags] = useState<FeatureFlags>({});
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(initialSettings === DEFAULT_SETTINGS);
 
     const fetchConfig = async () => {
         try {
@@ -53,7 +61,7 @@ export function ConfigProvider({ children }: { children: React.ReactNode }) {
 
             if (setRes) {
                 const sObj: SiteSettings = {};
-                setRes.forEach(s => sObj[s.key] = s.value);
+                setRes.forEach((s: any) => sObj[s.key] = s.value);
                 setSettings(prev => ({ ...prev, ...sObj }));
             }
 
@@ -63,7 +71,7 @@ export function ConfigProvider({ children }: { children: React.ReactNode }) {
 
             if (flagsRes) {
                 const fObj: FeatureFlags = {};
-                flagsRes.forEach(f => fObj[f.feature_name] = f.enabled);
+                flagsRes.forEach((f: any) => fObj[f.feature_name] = f.enabled);
                 setFeatureFlags(fObj);
             }
         } catch (err) {

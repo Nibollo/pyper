@@ -6,6 +6,7 @@ import { useConfig } from '@/context/ConfigContext';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import styles from './kits.module.css';
+import OptimizedImage from '@/components/OptimizedImage';
 
 export default function KitsPage() {
     const { addToCart } = useCart();
@@ -90,7 +91,13 @@ export default function KitsPage() {
                                 <Link href={`/productos/${kit.slug || kit.id}`} className={styles.kitLink}>
                                     <div className={styles.itemIcon}>
                                         {(kit.main_image || kit.image_url) ? (
-                                            <img src={kit.main_image || kit.image_url} alt={kit.name} className="w-full h-full object-contain" />
+                                            <OptimizedImage
+                                                src={kit.main_image || kit.image_url}
+                                                alt={kit.name}
+                                                width={400}
+                                                height={400}
+                                                className="w-full h-full object-contain"
+                                            />
                                         ) : (
                                             <span className="text-4xl text-slate-300">🎒</span>
                                         )}

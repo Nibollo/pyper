@@ -10,7 +10,8 @@
   }
 
   body {
-    @apply bg-background-light text-slate-900 font-display transition-colors duration-300;
+    @apply bg-background-light text-slate-900 transition-colors duration-300;
+    font-family: var(--font-lexend), sans-serif;
     font-size: clamp(14px, 1vw + 10px, 16px);
     overflow-x: hidden;
     width: 100%;

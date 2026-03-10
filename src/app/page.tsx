@@ -10,6 +10,8 @@ import { useCart } from '@/context/CartContext';
 import AdBanner from '@/components/AdBanner';
 import LogoCarousel from '@/components/LogoCarousel';
 import PopupBanner from '@/components/PopupBanner';
+import SmartSearch from '@/components/SmartSearch';
+import OptimizedImage from '@/components/OptimizedImage';
 
 export default function Home() {
   const { heroSlides, homeSections, featureFlags, settings, loading: configLoading } = useConfig();
@@ -80,6 +82,7 @@ export default function Home() {
       <div className="pt-8">
         <AdBanner />
       </div>
+      <SmartSearch />
       {/* Hero Section */}
       {featureFlags.hero_slider !== false && (
         <section className="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-32 bg-white">
@@ -142,7 +145,14 @@ export default function Home() {
                 <div className="relative z-10 rounded-[2.5rem] overflow-hidden border-8 border-white shadow-2xl bg-white group">
                   <div className="aspect-video w-full flex items-center justify-center bg-slate-50 text-primary transition-transform duration-700 group-hover:scale-105">
                     {mainSlide.image_url ? (
-                      <img src={mainSlide.image_url} alt={mainSlide.title} className="w-full h-full object-cover" />
+                      <OptimizedImage
+                        src={mainSlide.image_url}
+                        alt={mainSlide.title}
+                        width={800}
+                        height={450}
+                        className="w-full h-full object-cover"
+                        priority
+                      />
                     ) : (
                       <span className="material-symbols-outlined text-[10rem] opacity-20">school</span>
                     )}
@@ -270,7 +280,13 @@ export default function Home() {
                 <div key={product.id} className={`bg-white rounded-[2.5rem] p-4 text-slate-900 shadow-2xl transform transition-all hover:scale-105 ${idx === 0 ? 'hover:-rotate-2' : idx === 1 ? 'hover:rotate-1' : 'hover:rotate-2'}`}>
                   <div className="relative bg-slate-100 rounded-[2rem] overflow-hidden mb-6 aspect-square group flex items-center justify-center">
                     {(product.main_image || product.image_url) ? (
-                      <img src={product.main_image || product.image_url} alt={product.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                      <OptimizedImage
+                        src={product.main_image || product.image_url}
+                        alt={product.name}
+                        width={400}
+                        height={400}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
                     ) : (
                       <span className="material-symbols-outlined text-8xl text-primary/20">package_2</span>
                     )}
@@ -309,7 +325,13 @@ export default function Home() {
               <div className="absolute -z-10 bg-primary/20 w-full h-full rounded-full blur-3xl scale-125"></div>
               <div className="w-full aspect-square md:aspect-auto md:h-[500px] rounded-[3rem] shadow-2xl border-b-8 border-primary bg-white flex items-center justify-center overflow-hidden">
                 {settings.services_image ? (
-                  <img src={settings.services_image} alt="" className="w-full h-full object-cover" />
+                  <OptimizedImage
+                    src={settings.services_image}
+                    alt="Servicios Pyper"
+                    width={600}
+                    height={500}
+                    className="w-full h-full object-cover"
+                  />
                 ) : (
                   <span className="material-symbols-outlined text-[12rem] text-primary/10">engineering</span>
                 )}
@@ -374,7 +396,13 @@ export default function Home() {
                 <Link href={`/productos/${product.slug}`} key={product.id} className="group bg-slate-50 rounded-[2.5rem] p-6 border border-slate-100 transition-all hover:shadow-2xl hover:-translate-y-2">
                   <div className="relative aspect-[4/5] bg-white rounded-[2rem] overflow-hidden mb-6 flex items-center justify-center">
                     {(product.main_image || product.image_url) ? (
-                      <img src={product.main_image || product.image_url} alt={product.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                      <OptimizedImage
+                        src={product.main_image || product.image_url}
+                        alt={product.name}
+                        width={400}
+                        height={500}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
                     ) : (
                       <span className="material-symbols-outlined text-[100px] text-slate-100 italic">shopping_bag</span>
                     )}
@@ -416,7 +444,13 @@ export default function Home() {
               <Link href={`/blog/${blog.slug}`} key={blog.id} className="group bg-slate-900 rounded-[2.5rem] overflow-hidden border border-slate-800 hover:border-primary/50 transition-all hover:shadow-2xl hover:shadow-primary/10">
                 <div className="aspect-[16/10] bg-slate-800 relative overflow-hidden">
                   {blog.cover_image ? (
-                    <img src={blog.cover_image} alt={blog.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" />
+                    <OptimizedImage
+                      src={blog.cover_image}
+                      alt={blog.title}
+                      width={600}
+                      height={375}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                    />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-slate-900 group-hover:bg-primary/5 transition-colors">
                       <span className="material-symbols-outlined text-[80px] text-slate-800 transition-all font-light">newspaper</span>

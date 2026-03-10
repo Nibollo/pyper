@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import SectionRenderer from '@/components/cms/SectionRenderer';
+import OptimizedImage from '@/components/OptimizedImage';
 
 export default function BlogDetail({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = use(params);
@@ -66,7 +67,14 @@ export default function BlogDetail({ params }: { params: Promise<{ slug: string 
 
                     {blog.cover_image && (
                         <div className="rounded-[60px] overflow-hidden aspect-video shadow-[0_40px_100px_-20px_rgba(0,0,0,0.2)] ring-1 ring-slate-100 group">
-                            <img src={blog.cover_image} alt={blog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2000ms]" />
+                            <OptimizedImage
+                                src={blog.cover_image}
+                                alt={blog.title}
+                                width={1200}
+                                height={675}
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2000ms]"
+                                priority={true}
+                            />
                         </div>
                     )}
                 </div>

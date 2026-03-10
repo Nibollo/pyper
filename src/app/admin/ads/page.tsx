@@ -273,6 +273,7 @@ export default function AdsAdmin() {
                                         <option value="home_middle">Página Principal (Medio)</option>
                                         <option value="carousel">Carrusel de Logotipos (Abajo)</option>
                                         <option value="popup">Ventana Emergente (Pop-up)</option>
+                                        <option value="recommendation">Tarjeta Flotante (Recomendación)</option>
                                         <option value="sidebar">Barra Lateral (Blog/Tienda)</option>
                                     </select>
                                 </div>

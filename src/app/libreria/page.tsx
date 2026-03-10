@@ -6,6 +6,7 @@ import { useConfig } from '@/context/ConfigContext';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import styles from './libreria.module.css';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const CATEGORIES = [
     'Todos',
@@ -22,7 +23,7 @@ const CATEGORIES = [
 const MOCK_PRODUCTS = [
     { id: '1', name: 'Cuaderno Universitario 100 Hojas', price: 15000, category: 'Cuadernos', image: '📓' },
     { id: '2', name: 'Mochila Ergonómica Primaria', price: 185000, category: 'Mochilas', image: '🎒' },
-    { id: '3', name: 'Kit Escolar 1er Grado (Completo)', price: 250000, category: 'Kits escolares', image: '📦' },
+    { id: '3', 'name': 'Kit Escolar 1er Grado (Completo)', price: 250000, category: 'Kits escolares', image: '📦' },
     { id: '4', name: 'Caja de Lápices de Colores x24', price: 35000, category: 'Útiles escolares', image: '✏️' },
     { id: '5', name: 'Diccionario Castellano Ilustrado', price: 45000, category: 'Libros escolares', image: '📖' },
     { id: '6', name: 'Carpeta A4 Tapa Dura', price: 22000, category: 'Papelería', image: '📂' },
@@ -109,7 +110,13 @@ export default function LibreriaPage() {
                                 <Link href={`/productos/${product.slug || product.id}`} className={styles.productLink}>
                                     <div className={styles.productImage}>
                                         {(product.main_image || product.image_url) ? (
-                                            <img src={product.main_image || product.image_url} alt={product.name} />
+                                            <OptimizedImage
+                                                src={product.main_image || product.image_url}
+                                                alt={product.name}
+                                                width={400}
+                                                height={400}
+                                                className="w-full h-full object-contain"
+                                            />
                                         ) : (
                                             <span className={styles.emoji}>📓</span>
                                         )}

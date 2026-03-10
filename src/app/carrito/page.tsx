@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import styles from './carrito.module.css';
 import Link from 'next/link';
+import OptimizedImage from '@/components/OptimizedImage';
 import { useConfig } from '@/context/ConfigContext';
 import { supabase } from '@/lib/supabase';
 import { PARAGUAY_LOCATIONS } from '@/lib/paraguay-locations';
@@ -188,7 +189,13 @@ export default function CarritoPage() {
                                     <div key={item.id} className={styles.cartItem}>
                                         <div className={styles.itemImage}>
                                             {item.image && (item.image.startsWith('http') || item.image.startsWith('/')) ? (
-                                                <img src={item.image} alt={item.name} />
+                                                <OptimizedImage
+                                                    src={item.image}
+                                                    alt={item.name}
+                                                    width={100}
+                                                    height={100}
+                                                    className="w-full h-full object-contain"
+                                                />
                                             ) : (
                                                 item.image || '📓'
                                             )}

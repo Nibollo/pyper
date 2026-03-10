@@ -3,11 +3,19 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import FloatingRecommendation from "@/components/FloatingRecommendation";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import { CartProvider } from "@/context/CartContext";
 import { ConfigProvider } from "@/context/ConfigContext";
 import { supabase } from "@/lib/supabase";
 import Script from "next/script";
+import { Lexend } from "next/font/google";
+
+const lexend = Lexend({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-lexend",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   try {
@@ -30,17 +38,31 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Server-side fetch to prevent hydration flicker (e.g. Logo swap)
+  // This will fetch settings and navigation only once per request.
+  const [
+    { data: setRes },
+    { data: navRes }
+  ] = await Promise.all([
+    supabase.from('site_settings').select('key, value'),
+    supabase.from('navigation_items').select('*').eq('active', true).order('order', { ascending: true })
+  ]);
+
+  const initialSettings: any = {};
+  if (setRes) setRes.forEach((s: any) => initialSettings[s.key] = s.value);
+  const initialNavigation = navRes || [];
+
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning className={lexend.variable}>
       <head>
+        {/* Preconnect to improve speed of external connections */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       </head>
       <body>
@@ -69,12 +91,13 @@ export default function RootLayout({
           }}
         />
 
-        <ConfigProvider>
+        <ConfigProvider initialSettings={initialSettings} initialNavigation={initialNavigation}>
           <CartProvider>
             <Navbar />
             <main>{children}</main>
             <Footer />
             <FloatingWhatsApp />
+            <FloatingRecommendation />
             <AnalyticsTracker />
           </CartProvider>
         </ConfigProvider>

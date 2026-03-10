@@ -6,6 +6,7 @@ import { useConfig } from '@/context/ConfigContext';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
 import styles from './tecnologia.module.css';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const TECH_CATEGORIES = [
     'Notebooks',
@@ -94,7 +95,13 @@ export default function TecnologiaPage() {
                                 <Link href={`/productos/${product.slug || product.id}`} className={styles.linkWrapper}>
                                     <div className={styles.imageArea}>
                                         {product.main_image ? (
-                                            <img src={product.main_image} alt={product.name} className="w-full h-full object-contain" />
+                                            <OptimizedImage
+                                                src={product.main_image}
+                                                alt={product.name}
+                                                width={400}
+                                                height={400}
+                                                className="w-full h-full object-contain"
+                                            />
                                         ) : (
                                             <span className={styles.emoji}>💻</span>
                                         )}

@@ -5,6 +5,7 @@ import { useCart } from '@/context/CartContext';
 import { useConfig } from '@/context/ConfigContext';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import OptimizedImage from './OptimizedImage';
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -35,7 +36,14 @@ export default function Navbar() {
                     <div className="flex items-center gap-10">
                         <Link href="/" className="flex items-center gap-3 decoration-0">
                             {settings.logo_url ? (
-                                <img src={settings.logo_url} alt={settings.business_name} className="h-10 sm:h-12 w-auto object-contain" />
+                                <OptimizedImage
+                                    src={settings.logo_url}
+                                    alt={settings.business_name}
+                                    width={120}
+                                    height={48}
+                                    className="h-10 sm:h-12 w-auto object-contain"
+                                    priority
+                                />
                             ) : (
                                 <>
                                     <div className="bg-primary p-2 rounded-lg">
@@ -74,14 +82,7 @@ export default function Navbar() {
                     </div>
 
                     <div className="flex items-center gap-2 sm:gap-4">
-                        <div className="hidden lg:flex items-center bg-slate-100 dark:bg-primary/10 rounded-full px-4 py-2 border border-slate-200 dark:border-primary/20 gap-2">
-                            <span className="material-symbols-outlined text-primary text-xl leading-none">search</span>
-                            <input
-                                className="bg-transparent border-none focus:ring-0 text-sm w-48 placeholder:text-slate-400 p-0"
-                                placeholder="Buscar útiles, laptops..."
-                                type="text"
-                            />
-                        </div>
+                        {/* Search bar removed - relocated to Home page */}
 
                         <Link href="/carrito" className="relative p-2 hover:bg-primary/10 rounded-full transition-all">
                             <span className="material-symbols-outlined text-slate-700 dark:text-slate-200">shopping_cart</span>
@@ -152,8 +153,8 @@ export default function Navbar() {
                                         key={idx}
                                         href={item.link}
                                         className={`group flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-300 ${pathname === item.link
-                                                ? 'bg-primary text-white shadow-lg shadow-primary/25 scale-[1.02]'
-                                                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:translate-x-1'
+                                            ? 'bg-primary text-white shadow-lg shadow-primary/25 scale-[1.02]'
+                                            : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:translate-x-1'
                                             }`}
                                     >
                                         <div className={`p-2 rounded-xl transition-colors ${pathname === item.link ? 'bg-white/20' : 'bg-slate-100 dark:bg-slate-800 group-hover:bg-primary/15 group-hover:text-primary'}`}>

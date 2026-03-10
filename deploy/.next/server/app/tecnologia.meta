@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/tecnologia/layout,_N_T_/tecnologia/page,_N_T_/tecnologia"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/tecnologia/__PAGE__",
+    "/tecnologia",
+    "/_index",
+    "/_head"
+  ]
+}

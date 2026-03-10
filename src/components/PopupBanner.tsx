@@ -5,6 +5,7 @@ import { Banner } from '@/types';
 import { supabase } from '@/lib/supabase';
 import styles from './PopupBanner.module.css';
 import Link from 'next/link';
+import OptimizedImage from './OptimizedImage';
 
 export default function PopupBanner() {
     const [banner, setBanner] = useState<Banner | null>(null);
@@ -76,10 +77,22 @@ export default function PopupBanner() {
                 <div className={styles.content}>
                     {banner.link_url ? (
                         <Link href={banner.link_url} onClick={handleClose}>
-                            <img src={banner.image_url} alt="Promoción" />
+                            <OptimizedImage
+                                src={banner.image_url}
+                                alt="Promoción"
+                                width={800}
+                                height={600}
+                                className="w-full h-auto rounded-xl"
+                            />
                         </Link>
                     ) : (
-                        <img src={banner.image_url} alt="Promoción" />
+                        <OptimizedImage
+                            src={banner.image_url}
+                            alt="Promoción"
+                            width={800}
+                            height={600}
+                            className="w-full h-auto rounded-xl"
+                        />
                     )}
                 </div>
             </div>

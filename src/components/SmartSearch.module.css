@@ -1,0 +1,214 @@
+.searchContainer {
+    width: 100%;
+    max-width: 1000px;
+    margin: -10px auto 40px;
+    position: relative;
+    z-index: 40;
+    padding: 0 20px;
+}
+
+.searchBox {
+    background: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(229, 56, 68, 0.1);
+    border-radius: 2rem;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.searchBox:focus-within {
+    background: #fff;
+    border-color: #e53844;
+    box-shadow: 0 25px 50px rgba(229, 56, 68, 0.12);
+    transform: translateY(-2px);
+}
+
+.categorySelect {
+    background: #f8f6f6;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #211112;
+    cursor: pointer;
+    min-width: 160px;
+    outline: none;
+    transition: background 0.3s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath d='M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+}
+
+.categorySelect:hover {
+    background-color: #f0eeee;
+}
+
+.inputWrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.inputWrapper input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #211112;
+    outline: none;
+}
+
+.inputWrapper input::placeholder {
+    color: #a0a0a0;
+}
+
+.searchButton {
+    background: #e53844;
+    color: #fff;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 12px 30px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.searchButton:hover {
+    background: #d42d38;
+    box-shadow: 0 10px 20px rgba(229, 56, 68, 0.3);
+    transform: scale(1.02);
+}
+
+.resultsDropdown {
+    position: absolute;
+    top: calc(100% + 15px);
+    left: 20px;
+    right: 20px;
+    background: #fff;
+    border-radius: 2rem;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    z-index: 50;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.resultItem {
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.2s;
+}
+
+.resultItem:last-child {
+    border-bottom: none;
+}
+
+.resultItem:hover {
+    background: #fdf2f3;
+}
+
+.resultImage {
+    width: 50px;
+    height: 50px;
+    background: #f8f6f6;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.resultImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.resultInfo h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #211112;
+    margin: 0;
+}
+
+.resultInfo p {
+    font-size: 0.85rem;
+    color: #e53844;
+    font-weight: 800;
+    margin: 2px 0 0;
+}
+
+.viewAll {
+    padding: 15px;
+    text-align: center;
+    background: #f8f6f6;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.viewAll:hover {
+    background: #eee;
+    color: #e53844;
+}
+
+@media (max-width: 768px) {
+    .searchContainer {
+        margin-top: 10px;
+    }
+
+    .searchBox {
+        flex-direction: column;
+        border-radius: 2rem;
+        padding: 15px;
+    }
+
+    .categorySelect {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .inputWrapper {
+        width: 100%;
+        padding: 5px 10px;
+    }
+
+    .searchButton {
+        width: 100%;
+        justify-content: center;
+    }
+}
