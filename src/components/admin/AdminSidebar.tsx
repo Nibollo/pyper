@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import styles from './AdminSidebar.module.css';
@@ -29,7 +31,7 @@ export default function AdminSidebar() {
                     <Link
                         key={item.path}
                         href={item.path}
-                        className={`${styles.navItem} ${pathname.startsWith(item.path) ? styles.active : ''}`}
+                        className={`${styles.navItem} ${pathname?.startsWith(item.path) ? styles.active : ''}`}
                     >
                         <span className={`material-symbols-outlined ${styles.icon}`}>{item.icon}</span>
                         <span className={styles.label}>{item.label}</span>

@@ -1,5 +1,6 @@
 'use client';
-// BUILD VERSION: 4 - VERIFYING SYNC WITH VERCEL
+
+export const dynamic = 'force-dynamic';
 
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
@@ -7,6 +8,7 @@ import styles from './dashboard.module.css';
 import Link from 'next/link';
 
 export default function AdminDashboard() {
+    const [mounted, setMounted] = useState(false);
     const [stats, setStats] = useState([
         { label: 'Ventas del Mes', value: '--- Gs.', trend: '...', color: '#25D366' },
         { label: 'Visitas Hoy', value: '---', trend: '...', color: '#E30613' },
@@ -26,6 +28,7 @@ export default function AdminDashboard() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        setMounted(true);
         async function fetchDashboardData() {
             try {
                 const now = new Date();
@@ -114,6 +117,8 @@ export default function AdminDashboard() {
         }
         fetchDashboardData();
     }, []);
+
+    if (!mounted) return null;
 
     return (
         <div className={styles.dashboard}>

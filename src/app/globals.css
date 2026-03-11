@@ -1,4 +1,4 @@
-@import "leaflet/dist/leaflet.css";
+/* Leaflet CSS removed from global to improve PageSpeed (moved to StoreMap component) */
 
 @tailwind base;
 @tailwind components;

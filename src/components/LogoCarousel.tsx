@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Banner } from '@/types';
 import { supabase } from '@/lib/supabase';
 import styles from './LogoCarousel.module.css';
+import OptimizedImage from './OptimizedImage';
 
 export default function LogoCarousel() {
     const [logos, setLogos] = useState<Banner[]>([]);
@@ -64,11 +65,29 @@ export default function LogoCarousel() {
                         {extendedLogos.map((logo, index) => (
                             <div key={`${logo.id}-${index}`} className={styles.logoItem}>
                                 {logo.link_url ? (
-                                    <a href={logo.link_url} target="_blank" rel="noopener noreferrer">
-                                        <img src={logo.image_url} alt="Logo Empresa" />
+                                    <a 
+                                        href={logo.link_url} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer" 
+                                        className="block w-full h-full"
+                                        aria-label="Visitar sitio de empresa recomendada"
+                                    >
+                                        <OptimizedImage 
+                                            src={logo.image_url} 
+                                            alt="Logo Empresa" 
+                                            width={150}
+                                            height={80}
+                                            className="w-full h-full object-contain"
+                                        />
                                     </a>
                                 ) : (
-                                    <img src={logo.image_url} alt="Logo Empresa" />
+                                    <OptimizedImage 
+                                        src={logo.image_url} 
+                                        alt="Logo Empresa" 
+                                        width={150}
+                                        height={80}
+                                        className="w-full h-full object-contain"
+                                    />
                                 )}
                             </div>
                         ))}

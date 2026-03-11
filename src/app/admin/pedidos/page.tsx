@@ -1,19 +1,25 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import styles from './pedidos.module.css';
 import Link from 'next/link';
 
 export default function PedidosPage() {
+    const [mounted, setMounted] = useState(false);
     const [orders, setOrders] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('Todos');
     const [selectedOrder, setSelectedOrder] = useState<any>(null);
 
     useEffect(() => {
+        setMounted(true);
         fetchOrders();
     }, []);
+
+    if (!mounted) return null;
 
     const fetchOrders = async () => {
         setLoading(true);
@@ -142,7 +148,7 @@ export default function PedidosPage() {
                                                     <span className="text-[10px] text-slate-400 uppercase">{order.request_type}</span>
                                                 </div>
                                             </td>
-                                            <td>{new Date(order.created_at).toLocaleDateString('es-PY')}</td>
+                                            <td>{order.created_at ? new Date(order.created_at).toLocaleDateString('es-PY') : '---'}</td>
                                             <td>
                                                 <span className={`${styles.statusBadge} ${styles[order.status.replace(/\s/g, '').toLowerCase()]}`}>
                                                     {order.status}
@@ -206,7 +212,7 @@ export default function PedidosPage() {
                                 <div className={styles.detailBox}>
                                     <h4>Estado y Fecha</h4>
                                     <p><strong>Estado Actual:</strong> <span className={`${styles.statusBadge} ${styles[selectedOrder.status.replace(/\s/g, '').toLowerCase()]}`}>{selectedOrder.status}</span></p>
-                                    <p><strong>Fecha:</strong> {new Date(selectedOrder.created_at).toLocaleString('es-PY')}</p>
+                                    <p><strong>Fecha:</strong> {selectedOrder.created_at ? new Date(selectedOrder.created_at).toLocaleString('es-PY') : '---'}</p>
                                     <p><strong>Total:</strong> {selectedOrder.total_amount > 0 ? `${Number(selectedOrder.total_amount).toLocaleString('es-PY')} Gs.` : 'Presupuesto'}</p>
                                 </div>
                             </div>

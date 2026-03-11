@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useConfig } from '@/context/ConfigContext';
@@ -13,14 +15,18 @@ import CategoriesManager from '@/components/admin/CategoriesManager';
 import StatsManager from '@/components/admin/StatsManager';
 
 export default function GeneralSettings() {
+    const [mounted, setMounted] = useState(false);
     const { settings, refreshConfig } = useConfig();
     const [localSettings, setLocalSettings] = useState<any>({});
     const [saving, setSaving] = useState(false);
     const [message, setMessage] = useState('');
 
     useEffect(() => {
+        setMounted(true);
         setLocalSettings(settings);
     }, [settings]);
+
+    if (!mounted) return null;
 
     const handleChange = (key: string, value: string) => {
         setLocalSettings((prev: any) => ({ ...prev, [key]: value }));

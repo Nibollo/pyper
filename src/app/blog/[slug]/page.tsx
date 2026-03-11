@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect, use } from 'react';
 import { supabase } from '@/lib/supabase';
 import { notFound } from 'next/navigation';
@@ -62,7 +64,7 @@ export default function BlogDetail({ params }: { params: Promise<{ slug: string 
                     <div className="flex items-center justify-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest mb-12">
                         <span className="text-slate-900 opacity-100">Editorial Pyper</span>
                         <span className="opacity-20">•</span>
-                        <span>{new Date(blog.published_at).toLocaleDateString('es-PY', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                        <span>{blog.published_at ? new Date(blog.published_at).toLocaleDateString('es-PY', { day: 'numeric', month: 'long', year: 'numeric' }) : 'Fecha pendiente'}</span>
                     </div>
 
                     {blog.cover_image && (

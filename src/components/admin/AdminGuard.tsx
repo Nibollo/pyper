@@ -5,16 +5,18 @@ import { useRouter, usePathname } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 
 export default function AdminGuard({ children }: { children: React.ReactNode }) {
+    const [mounted, setMounted] = useState(false);
     const [loading, setLoading] = useState(true);
     const [authenticated, setAuthenticated] = useState(false);
     const router = useRouter();
     const pathname = usePathname();
 
     useEffect(() => {
+        setMounted(true);
         const checkAuth = async () => {
             const { data: { session } } = await supabase.auth.getSession();
 
-            if (!session && pathname !== '/admin/login') {
+            if (!session && pathname && pathname !== '/admin/login') {
                 router.push('/admin/login');
             } else {
                 setAuthenticated(true);
@@ -38,6 +40,8 @@ export default function AdminGuard({ children }: { children: React.ReactNode }) 
         };
     }, [router, pathname]);
 
+    if (!mounted) return null;
+
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-slate-50">
@@ -49,7 +53,7 @@ export default function AdminGuard({ children }: { children: React.ReactNode }) 
         );
     }
 
-    if (!authenticated && pathname !== '/admin/login') {
+    if (!authenticated && pathname && pathname !== '/admin/login') {
         return null;
     }
 

@@ -97,3 +97,19 @@ export interface Banner {
     whatsapp_message?: string;      // Custom message for WhatsApp links
     created_at?: string;
 }
+
+export interface Store {
+    id: string;
+    name: string;
+    address: string;
+    city?: string;
+    category?: string;
+    image_url?: string;
+    schedule?: string;
+    phone?: string;
+    email?: string;
+    whatsapp?: string;
+    lat?: number;
+    lng?: number;
+    active?: boolean;
+}

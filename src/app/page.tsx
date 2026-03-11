@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -152,6 +154,8 @@ export default function Home() {
                         height={450}
                         className="w-full h-full object-cover"
                         priority
+                        fetchPriority="high"
+                        sizes="(max-width: 768px) 100vw, 800px"
                       />
                     ) : (
                       <span className="material-symbols-outlined text-[10rem] opacity-20">school</span>
@@ -468,7 +472,7 @@ export default function Home() {
                   </h3>
                   <div className="flex items-center justify-between pt-6 border-t border-slate-800">
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                      {new Date(blog.published_at).toLocaleDateString('es-PY', { day: 'numeric', month: 'short' })}
+                      {blog.published_at ? new Date(blog.published_at).toLocaleDateString('es-PY', { day: 'numeric', month: 'short' }) : '---'}
                     </span>
                     <div className="flex items-center gap-1 text-primary font-black text-xs uppercase group-hover:gap-2 transition-all">
                       Leer más <span className="material-symbols-outlined text-sm">arrow_forward</span>

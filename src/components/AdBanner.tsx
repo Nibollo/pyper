@@ -75,6 +75,7 @@ export default function AdBanner({ placement = 'home_top' }: { placement?: strin
                                 height={300}
                                 className={bannerStyles.bannerImage}
                                 priority={placement === 'home_top'}
+                                sizes="(max-width: 768px) 100vw, 1280px"
                             />
                         </Link>
                     ) : (
@@ -85,6 +86,7 @@ export default function AdBanner({ placement = 'home_top' }: { placement?: strin
                             height={300}
                             className={bannerStyles.bannerImage}
                             priority={placement === 'home_top'}
+                            sizes="(max-width: 768px) 100vw, 1280px"
                         />
                     )}
                     <div className={bannerStyles.gradientOverlay}></div>

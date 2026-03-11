@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import styles from './cms.module.css';
@@ -7,6 +9,7 @@ import Link from 'next/link';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 
 export default function AdminCMSPage() {
+    const [mounted, setMounted] = useState(false);
     const [pages, setPages] = useState<any[]>([]);
     const [footerColumns, setFooterColumns] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -23,8 +26,11 @@ export default function AdminCMSPage() {
     });
 
     useEffect(() => {
+        setMounted(true);
         fetchCMSData();
     }, []);
+
+    if (!mounted) return null;
 
     async function fetchCMSData() {
         setLoading(true);

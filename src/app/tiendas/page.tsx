@@ -96,8 +96,8 @@ export default function TiendasPage() {
                 </div>
 
                 {/* Filters Row */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                    <div className="relative">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                    <div className="relative md:col-span-1">
                         <select 
                             title="Filtrar por ciudad"
                             className="w-full h-14 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-6 text-slate-700 dark:text-slate-200 font-bold appearance-none cursor-pointer focus:ring-2 focus:ring-primary/20 transition-all outline-none"
@@ -110,7 +110,7 @@ export default function TiendasPage() {
                         <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">expand_more</span>
                     </div>
 
-                    <div className="relative">
+                    <div className="relative md:col-span-1">
                         <select 
                             title="Filtrar por categoría"
                             className="w-full h-14 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl px-6 text-slate-700 dark:text-slate-200 font-bold appearance-none cursor-pointer focus:ring-2 focus:ring-primary/20 transition-all outline-none"
@@ -123,17 +123,20 @@ export default function TiendasPage() {
                         <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">expand_more</span>
                     </div>
 
-                    <div className="flex items-center justify-end">
-                        <span className="text-xs font-black text-slate-400 uppercase tracking-widest">
-                            {filteredStores.length} Tiendas Encontradas
-                        </span>
+                    <div className="md:col-span-2 flex items-center justify-end">
+                        <div className="bg-white dark:bg-slate-900 px-6 py-3 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center gap-3">
+                            <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                                {filteredStores.length} Locales Encontrados
+                            </span>
+                        </div>
                     </div>
                 </div>
 
                 {/* Main Content: List & Map */}
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* List Section */}
-                    <div className="lg:col-span-2 space-y-4 max-h-[700px] overflow-y-auto pr-2 custom-scrollbar">
+                    <div className="lg:col-span-4 space-y-4 max-h-[800px] lg:max-h-[700px] overflow-y-auto pr-2 custom-scrollbar">
                         {loading ? (
                             Array(4).fill(0).map((_, i) => (
                                 <div key={i} className="h-40 bg-white dark:bg-slate-900/50 rounded-3xl animate-pulse border border-slate-100 dark:border-slate-800" />
@@ -148,12 +151,14 @@ export default function TiendasPage() {
                                 />
                             ))
                         ) : (
-                            <div className="bg-white dark:bg-slate-900/50 p-12 rounded-3xl text-center border border-dashed border-slate-200 dark:border-slate-800">
-                                <span className="material-symbols-outlined text-4xl text-slate-300 mb-4 block">location_off</span>
-                                <p className="text-slate-500 font-bold">No se encontraron tiendas con esos filtros.</p>
+                            <div className="bg-white dark:bg-slate-900/50 p-12 rounded-3xl text-center border border-dashed border-slate-200 dark:border-slate-800 shadow-inner">
+                                <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <span className="material-symbols-outlined text-3xl text-slate-300">location_off</span>
+                                </div>
+                                <p className="text-slate-500 font-bold">No se encontraron locales.</p>
                                 <button 
                                     onClick={() => setFilters({ city: 'Todas las ciudades', category: 'Todas las categorías' })}
-                                    className="text-primary text-sm font-black mt-4 hover:underline"
+                                    className="text-primary text-xs font-black mt-4 uppercase tracking-widest hover:underline"
                                 >
                                     Limpiar filtros
                                 </button>
@@ -162,20 +167,28 @@ export default function TiendasPage() {
                     </div>
 
                     {/* Map Section */}
-                    <div id="map-section" className="lg:col-span-3 h-[500px] lg:h-[700px] sticky top-24">
-                        <div className="h-full w-full rounded-[2.5rem] overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl relative">
+                    <div id="map-section" className="lg:col-span-8 h-[450px] lg:h-[700px] sticky top-24 z-10">
+                        <div className="h-full w-full rounded-[2.5rem] overflow-hidden border-8 border-white dark:border-slate-800 shadow-2xl relative group/map">
                             <StoreMap 
                                 stores={filteredStores} 
                                 selectedStoreId={selectedStoreId}
                             />
                             
                             {/* Map Floating UI */}
-                            <div className="absolute top-4 left-4 z-[1000] pointer-events-none">
-                                <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md p-3 rounded-2xl shadow-xl border border-white/20">
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                                        <span className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-wider">Mapa Interactivo Real-Time</span>
+                            <div className="absolute top-6 left-6 z-[1000] pointer-events-none transition-transform duration-500 group-hover/map:scale-105">
+                                <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-6 py-3 rounded-2xl shadow-xl border border-white/20">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-2.5 h-2.5 bg-primary rounded-full animate-ping absolute"></div>
+                                        <div className="w-2.5 h-2.5 bg-primary rounded-full relative"></div>
+                                        <span className="text-[10px] font-black text-slate-900 dark:text-white uppercase tracking-[0.2em]">Mapa de Alianzas PYPER</span>
                                     </div>
+                                </div>
+                            </div>
+
+                            {/* Corner Accents */}
+                            <div className="absolute bottom-6 right-6 z-[1000] pointer-events-none">
+                                <div className="bg-primary/95 text-white px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest shadow-lg">
+                                    V1.2.0
                                 </div>
                             </div>
                         </div>

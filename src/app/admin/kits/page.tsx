@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import styles from './kits.module.css';
@@ -8,6 +10,7 @@ import ImageUpload from '@/components/ImageUpload';
 import { Product, KitItem } from '@/types';
 
 export default function KitsPage() {
+    const [mounted, setMounted] = useState(false);
     const [kits, setKits] = useState<Product[]>([]);
     const [allProducts, setAllProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
@@ -27,9 +30,12 @@ export default function KitsPage() {
     });
 
     useEffect(() => {
+        setMounted(true);
         fetchKits();
         fetchInventory();
     }, []);
+
+    if (!mounted) return null;
 
     async function fetchKits() {
         setLoading(true);

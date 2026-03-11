@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import Link from 'next/link';
@@ -83,7 +85,7 @@ export default function BlogList() {
                                     </p>
                                     <div className="flex items-center justify-between pt-6 border-t border-slate-50">
                                         <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                                            {new Date(blog.published_at).toLocaleDateString('es-PY', { day: 'numeric', month: 'short', year: 'numeric' })}
+                                            {blog.published_at ? new Date(blog.published_at).toLocaleDateString('es-PY', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Próximamente'}
                                         </span>
                                         <div className="flex items-center gap-1 text-primary font-black text-xs uppercase group-hover:gap-2 transition-all">
                                             Leer más <span className="material-symbols-outlined text-sm">arrow_forward</span>

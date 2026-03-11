@@ -5,14 +5,22 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// Fix for default marker icons in Leaflet with Next.js
-const customIcon = L.icon({
-    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
+import { Store } from '@/types';
+
+// Custom Marker Icon with pulsing effect
+const createCustomIcon = (isSelected: boolean) => L.divIcon({
+    className: 'custom-marker',
+    html: `
+        <div class="relative flex items-center justify-center">
+            <div class="absolute w-8 h-8 ${isSelected ? 'bg-primary/40' : 'bg-primary/20'} rounded-full animate-ping"></div>
+            <div class="relative w-6 h-6 bg-primary rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+                <span class="material-symbols-outlined text-[14px] text-white font-bold">store</span>
+            </div>
+        </div>
+    `,
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -16]
 });
 
 // Paraguay bounds/center
@@ -35,15 +43,7 @@ function MapController({ selectedStore, stores }: { selectedStore: any, stores: 
     return null;
 }
 
-interface Store {
-    id: string;
-    name: string;
-    address: string;
-    lat: number;
-    lng: number;
-    whatsapp?: string;
-    image_url?: string;
-}
+// (Store interface removed as it's now imported from @/types)
 
 interface StoreMapProps {
     stores: Store[];
@@ -54,12 +54,12 @@ export default function StoreMap({ stores, selectedStoreId }: StoreMapProps) {
     const selectedStore = selectedStoreId ? stores.find(s => s.id === selectedStoreId) : null;
 
     return (
-        <div style={{ height: '100%', width: '100%', borderRadius: '1rem', overflow: 'hidden', zIndex: 1 }}>
+        <div className="h-full w-full relative z-0">
             <MapContainer
                 center={PY_CENTER}
                 zoom={PY_ZOOM}
                 scrollWheelZoom={true}
-                style={{ height: '100%', width: '100%' }}
+                className="h-full w-full"
             >
                 <MapController selectedStore={selectedStore} stores={stores} />
                 <TileLayer
@@ -71,34 +71,61 @@ export default function StoreMap({ stores, selectedStoreId }: StoreMapProps) {
                         <Marker
                             key={store.id}
                             position={[store.lat, store.lng]}
-                            icon={customIcon}
+                            icon={createCustomIcon(selectedStoreId === store.id)}
                         >
-                            <Popup>
-                                <div className="p-1 min-w-[150px]">
+                            <Popup className="premium-popup">
+                                <div className="p-2 min-w-[200px]">
                                     {store.image_url && (
-                                        <div className="w-full h-20 rounded-lg overflow-hidden mb-2 bg-slate-50 border border-slate-100">
-                                            <img src={store.image_url} alt={store.name} className="w-full h-full object-cover" />
+                                        <div className="w-full h-24 rounded-xl overflow-hidden mb-3 bg-slate-50 border border-slate-100 shadow-sm relative">
+                                            <img 
+                                                src={store.image_url} 
+                                                alt={store.name} 
+                                                className="w-full h-full object-cover" 
+                                            />
                                         </div>
                                     )}
-                                    <h4 className="font-bold text-sm mb-1">{store.name}</h4>
-                                    <p className="text-[10px] text-slate-600 mb-2 leading-tight">{store.address}</p>
-                                    {store.whatsapp && (
-                                        <a
-                                            href={`https://wa.me/${store.whatsapp.replace(/\D/g, '')}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1 bg-green-500 text-white px-2 py-1 rounded text-[10px] font-bold"
-                                        >
-                                            <span className="material-symbols-outlined text-sm">chat</span>
-                                            WhatsApp
-                                        </a>
-                                    )}
+                                    <div className="flex flex-col gap-1">
+                                        <h4 className="font-black text-slate-900 text-sm uppercase tracking-tight leading-tight">{store.name}</h4>
+                                        <div className="flex items-start gap-1.5 mt-1 border-t border-slate-50 pt-2">
+                                            <span className="material-symbols-outlined text-[14px] text-slate-400 mt-0.5">location_on</span>
+                                            <p className="text-[10px] text-slate-500 font-medium leading-relaxed">{store.address}</p>
+                                        </div>
+                                        
+                                        {store.whatsapp && (
+                                            <a
+                                                href={`https://wa.me/${store.whatsapp.replace(/\D/g, '')}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="mt-3 inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-xl text-[10px] font-black transition-all shadow-md shadow-green-500/20 active:scale-95 translate-y-0 hover:-translate-y-0.5"
+                                            >
+                                                <span className="material-symbols-outlined text-xs">chat</span>
+                                                CONTACTAR
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
                             </Popup>
                         </Marker>
                     )
                 ))}
             </MapContainer>
+
+            <style jsx global>{`
+                .premium-popup .leaflet-popup-content-wrapper {
+                    padding: 0;
+                    border-radius: 1.25rem;
+                    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+                    border: 1px solid rgba(255, 255, 255, 0.5);
+                    backdrop-filter: blur(8px);
+                }
+                .premium-popup .leaflet-popup-content {
+                    margin: 0;
+                    width: auto !important;
+                }
+                .premium-popup .leaflet-popup-tip {
+                    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+                }
+            `}</style>
         </div>
     );
 }

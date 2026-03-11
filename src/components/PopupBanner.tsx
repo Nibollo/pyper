@@ -83,6 +83,7 @@ export default function PopupBanner() {
                                 width={800}
                                 height={600}
                                 className="w-full h-auto rounded-xl"
+                                sizes="(max-width: 768px) 90vw, 800px"
                             />
                         </Link>
                     ) : (
@@ -92,6 +93,7 @@ export default function PopupBanner() {
                             width={800}
                             height={600}
                             className="w-full h-auto rounded-xl"
+                            sizes="(max-width: 768px) 90vw, 800px"
                         />
                     )}
                 </div>

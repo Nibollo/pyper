@@ -1,15 +1,5 @@
-'use client';
-
-interface Store {
-    id: string;
-    name: string;
-    address: string;
-    image_url?: string;
-    schedule?: string;
-    phone?: string;
-    email?: string;
-    whatsapp?: string;
-}
+import { Store } from '@/types';
+import OptimizedImage from './OptimizedImage';
 
 interface StoreCardProps {
     store: Store;
@@ -25,18 +15,15 @@ export default function StoreCard({ store, onViewInMap, isSelected }: StoreCardP
             className={`group bg-white dark:bg-slate-900/50 p-5 rounded-3xl border w-full transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 ${isSelected ? 'border-primary ring-2 ring-primary/10' : 'border-slate-100 dark:border-slate-800'}`}
         >
             <div className="flex gap-6 items-start">
-                <div className="w-24 h-24 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-100 dark:border-slate-800">
-                    {store.image_url ? (
-                        <img 
-                            src={store.image_url} 
-                            alt={store.name} 
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                    ) : (
-                        <div className="w-full h-full flex items-center justify-center text-slate-300">
-                            <span className="material-symbols-outlined text-4xl">store</span>
-                        </div>
-                    )}
+                <div className="w-24 h-24 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 shrink-0 border border-slate-100 dark:border-slate-800 relative">
+                    <OptimizedImage 
+                        src={store.image_url} 
+                        alt={store.name} 
+                        width={96}
+                        height={96}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        fallback="/placeholder-business.png"
+                    />
                 </div>
 
                 <div className="flex-1 min-w-0">
